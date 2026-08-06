@@ -7,7 +7,7 @@
     {
       "binding": "DB",
       "database_name": "lag-controller-db",
-      "database_id": "00000000-0000-0000-0000-000000000000"
+      "database_id": "6bb01193-c1f7-45af-80b2-0e31f826af52"
     }
   ],
   "r2_buckets": [
