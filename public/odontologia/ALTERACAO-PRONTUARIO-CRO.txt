@@ -1,0 +1,17 @@
+ALTERAÇÃO ISOLADA — MÓDULO ODONTOLOGIA
+
+Foram modificados somente os arquivos dentro da pasta odontologia:
+- odontologia/index.html
+- odontologia/js/odontologia.js
+- odontologia/css/prontuario-odontologico.css
+
+Nenhum outro módulo, script compartilhado, login, sidebar, almoxarifado, atendimento ou configuração global foi alterado.
+
+Funcionalidades incluídas:
+1. Identificação do paciente
+2. Anamnese e sinais vitais
+3. Exame clínico e odontograma interativo
+4. Plano de tratamento
+5. Evolução/atendimentos com assinatura do profissional
+6. Documentos anexos
+7. Assinatura do paciente por tela de tablet, caneta, toque ou mouse
