@@ -1,0 +1,3 @@
+A barra de pesquisa foi centralizada em todas as páginas internas.
+O botão Central de ajuda foi removido do topo.
+O suporte na parte inferior da sidebar foi preservado.

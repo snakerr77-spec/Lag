@@ -1,0 +1,6 @@
+Ajustes realizados na sidebar de Médicos e Exames:
+- O cartão "Precisa de ajuda?" permanece sempre visível na parte inferior.
+- Somente a lista de navegação possui rolagem quando não cabe na altura da tela.
+- A distância entre a sidebar e o conteúdo principal foi preservada.
+- O rodapé com a versão permanece abaixo do cartão de suporte.
+- Adicionado ajuste específico para telas de notebook com pouca altura.

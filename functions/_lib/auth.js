@@ -1,0 +1,190 @@
+const encoder = new TextEncoder();
+const SESSION_COOKIE = "lag_session";
+const SESSION_HOURS = 12;
+const PBKDF2_ITERATIONS = 210000;
+
+export function json(data, status = 200, headers = {}) {
+  return Response.json(data, {
+    status,
+    headers: { "Cache-Control": "no-store", ...headers }
+  });
+}
+
+export function clean(value, max = 500) {
+  return String(value ?? "").trim().slice(0, max);
+}
+
+export function normalizeRole(value) {
+  const role = clean(value, 40).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const allowed = new Set(["admin", "administrador", "gestor", "gerente", "financeiro", "laboratorio", "colaborador"]);
+  return allowed.has(role) ? role : "colaborador";
+}
+
+export function publicUser(row) {
+  if (!row) return null;
+  return {
+    id: row.id,
+    name: row.name,
+    email: row.email,
+    role: normalizeRole(row.role),
+    unit: row.city,
+    city: row.city,
+    phone: row.phone || "",
+    initials: initialsFor(row.name),
+    permissions: parsePermissions(row.permissions_json, row.role)
+  };
+}
+
+export function initialsFor(name) {
+  return clean(name, 160).split(/\s+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase() || "US";
+}
+
+export function defaultPermissions(role) {
+  const all = ["home","recepcao","geral","exames","consultas","odontologia","medicos","candidatos","laudos","prontuario","parceiros","almoxarifado","gestao","financeiro","controladoria","treinamentos","perfil"];
+  const map = {
+    admin: all,
+    administrador: all,
+    gestor: ["home","recepcao","geral","exames","consultas","odontologia","medicos","laudos","prontuario","parceiros","almoxarifado","gestao","financeiro","controladoria","treinamentos","perfil"],
+    gerente: all,
+    financeiro: ["home","geral","odontologia","parceiros","almoxarifado","gestao","financeiro","controladoria","perfil"],
+    laboratorio: ["home","recepcao","geral","exames","consultas","medicos","laudos","prontuario","almoxarifado","perfil"],
+    colaborador: ["home","recepcao","geral","exames","consultas","odontologia","treinamentos","perfil"]
+  };
+  return [...(map[normalizeRole(role)] || map.colaborador)];
+}
+
+export function parsePermissions(value, role) {
+  try {
+    const parsed = JSON.parse(value || "null");
+    if (Array.isArray(parsed) && parsed.length) return parsed;
+  } catch {}
+  return defaultPermissions(role);
+}
+
+function bytesToHex(buffer) {
+  return [...new Uint8Array(buffer)].map(byte => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function bytesToBase64Url(bytes) {
+  let binary = "";
+  bytes.forEach(byte => { binary += String.fromCharCode(byte); });
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/g, "");
+}
+
+function base64UrlToBytes(value) {
+  const normalized = String(value).replaceAll("-", "+").replaceAll("_", "/");
+  const padded = normalized + "=".repeat((4 - normalized.length % 4) % 4);
+  const binary = atob(padded);
+  return Uint8Array.from(binary, char => char.charCodeAt(0));
+}
+
+export async function createPasswordRecord(password) {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const hash = await derivePassword(password, salt);
+  return { salt: bytesToBase64Url(salt), hash };
+}
+
+export async function verifyPassword(password, saltText, expectedHash) {
+  if (!password || !saltText || !expectedHash) return false;
+  const actual = await derivePassword(password, base64UrlToBytes(saltText));
+  return timingSafeEqual(actual, expectedHash);
+}
+
+async function derivePassword(password, salt) {
+  const key = await crypto.subtle.importKey("raw", encoder.encode(String(password)), "PBKDF2", false, ["deriveBits"]);
+  const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt, iterations: PBKDF2_ITERATIONS }, key, 256);
+  return bytesToHex(bits);
+}
+
+function timingSafeEqual(a, b) {
+  const left = encoder.encode(String(a));
+  const right = encoder.encode(String(b));
+  if (left.length !== right.length) return false;
+  let diff = 0;
+  for (let i = 0; i < left.length; i += 1) diff |= left[i] ^ right[i];
+  return diff === 0;
+}
+
+export function randomToken(byteLength = 32) {
+  return bytesToBase64Url(crypto.getRandomValues(new Uint8Array(byteLength)));
+}
+
+export async function hashToken(token) {
+  return bytesToHex(await crypto.subtle.digest("SHA-256", encoder.encode(String(token))));
+}
+
+export function readCookie(request, name) {
+  const cookie = request.headers.get("Cookie") || "";
+  for (const part of cookie.split(";")) {
+    const [key, ...rest] = part.trim().split("=");
+    if (key === name) return decodeURIComponent(rest.join("="));
+  }
+  return "";
+}
+
+export function sessionCookie(token, maxAge = SESSION_HOURS * 60 * 60) {
+  return `${SESSION_COOKIE}=${encodeURIComponent(token)}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`;
+}
+
+export function clearSessionCookie() {
+  return `${SESSION_COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0`;
+}
+
+export async function createSession(env, request, userId) {
+  const token = randomToken();
+  const tokenHash = await hashToken(token);
+  const now = new Date();
+  const expires = new Date(now.getTime() + SESSION_HOURS * 60 * 60 * 1000);
+  await env.DB.prepare(`INSERT INTO sessions (id, user_id, token_hash, expires_at, created_at, user_agent, ip_address)
+    VALUES (?, ?, ?, ?, ?, ?, ?)`)
+    .bind(crypto.randomUUID(), userId, tokenHash, expires.toISOString(), now.toISOString(), clean(request.headers.get("User-Agent"), 500), clean(request.headers.get("CF-Connecting-IP"), 80))
+    .run();
+  return { token, expiresAt: expires.toISOString() };
+}
+
+export async function destroySession(env, request) {
+  const token = readCookie(request, SESSION_COOKIE);
+  if (!token) return;
+  await env.DB.prepare("DELETE FROM sessions WHERE token_hash = ?").bind(await hashToken(token)).run();
+}
+
+export async function getSession(env, request) {
+  const token = readCookie(request, SESSION_COOKIE);
+  if (!token) return null;
+  const tokenHash = await hashToken(token);
+  const row = await env.DB.prepare(`SELECT u.id, u.name, u.email, u.role, u.city, u.phone, u.permissions_json, u.active,
+      s.id AS session_id, s.expires_at
+    FROM sessions s JOIN users u ON u.id = s.user_id
+    WHERE s.token_hash = ? LIMIT 1`).bind(tokenHash).first();
+  if (!row || !row.active || new Date(row.expires_at).getTime() <= Date.now()) {
+    if (row?.session_id) await env.DB.prepare("DELETE FROM sessions WHERE id = ?").bind(row.session_id).run();
+    return null;
+  }
+  return { user: publicUser(row), sessionId: row.session_id, expiresAt: row.expires_at };
+}
+
+export async function requireSession(context) {
+  const session = await getSession(context.env, context.request);
+  if (!session) return { response: json({ error: "Sessão expirada ou não autenticada." }, 401) };
+  return session;
+}
+
+export async function requireAdmin(context) {
+  const session = await requireSession(context);
+  if (session.response) return session;
+  if (!new Set(["admin", "administrador"]).has(normalizeRole(session.user.role))) {
+    return { response: json({ error: "Acesso restrito a administradores." }, 403) };
+  }
+  return session;
+}
+
+export async function audit(env, userId, action, targetType, targetId, details = {}) {
+  try {
+    await env.DB.prepare(`INSERT INTO audit_logs (id, user_id, action, target_type, target_id, details_json, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)`)
+      .bind(crypto.randomUUID(), userId || null, clean(action, 80), clean(targetType, 80), clean(targetId, 160), JSON.stringify(details || {}), new Date().toISOString())
+      .run();
+  } catch (error) {
+    console.warn("audit_failed", error);
+  }
+}

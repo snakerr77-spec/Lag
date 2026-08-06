@@ -1,0 +1,5 @@
+CORREÇÃO DO PORTAL DO PACIENTE
+
+- Corrigido o modal de visualização que aparecia aberto ao carregar a página.
+- Adicionada regra global [hidden] para garantir que login, área do paciente e visualizador respeitem o estado oculto.
+- Mantido o restante do projeto sem alterações.

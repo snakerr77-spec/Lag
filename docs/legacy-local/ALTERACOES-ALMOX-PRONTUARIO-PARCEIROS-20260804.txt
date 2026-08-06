@@ -1,0 +1,21 @@
+LAG Controller — Ajustes de 04/08/2026
+
+ALMOXARIFADO
+- Banco de teste substituído por memória temporária.
+- Cadastro, edição, movimentação e exclusão funcionam durante a sessão.
+- Ao atualizar a página (F5), os dados voltam ao estado inicial.
+- Corrigido o carregamento dos produtos, solicitações e movimentações.
+
+PRONTUÁRIO
+- Cores integradas aos temas escolhidos no Perfil.
+- Cartões, campos, abas, mapa corporal, timeline e modal corrigidos nos temas claros e escuros.
+
+PARCEIROS
+- Novo layout com abas: Visão geral, Parceiros, Procedimentos e valores, Arquivos e planilhas.
+- Cadastro, edição e exclusão de parceiros.
+- Cadastro, edição, exclusão e exportação de procedimentos.
+- Criação e exclusão de pastas por cidade e parceiro.
+- Upload de XLSX, XLS, CSV, PDF, DOC, DOCX e imagens.
+- Leitura automática de colunas de procedimento, código, grupo, valor, parceiro e cidade.
+- Arquivos armazenados localmente no IndexedDB e metadados no localStorage.
+- Estrutura D1/R2 documentada para futura integração com Cloudflare, ainda desativada.

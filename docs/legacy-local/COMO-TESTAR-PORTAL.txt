@@ -1,0 +1,12 @@
+COMO TESTAR O PORTAL DO PACIENTE
+
+1. Abra a pasta do projeto no VS Code.
+2. Clique em “Go Live” para iniciar o Live Server.
+3. Use sempre: http://127.0.0.1:5500/
+4. Entre em Laudos Médicos e cadastre o laudo com CPF e data de nascimento.
+5. Clique no botão de cadeado aberto para “Finalizar e liberar no portal”.
+6. Abra: http://127.0.0.1:5500/laudos-medicos/portal-paciente/index.html
+7. Digite exatamente o mesmo CPF e a mesma data de nascimento.
+
+IMPORTANTE: não abra o portal clicando diretamente no arquivo index.html (file:///).
+O navegador separa o armazenamento do file:/// e do 127.0.0.1, então os laudos não são encontrados.

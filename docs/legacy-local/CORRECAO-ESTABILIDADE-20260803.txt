@@ -1,0 +1,7 @@
+CORREÇÃO DE ESTABILIDADE
+
+1. A política de segurança global foi removida porque bloqueava bibliotecas usadas em outras páginas, como Chart.js e XLSX.
+2. Os cabeçalhos de segurança ficaram restritos ao Portal do Paciente e às APIs do paciente.
+3. Links antigos de Ultrassom agora redirecionam para Laudos Médicos, evitando páginas 404.
+4. Modais e áreas com o atributo hidden receberam proteção CSS para não aparecerem indevidamente.
+5. Foram adicionadas correções responsivas na tela de Laudos Médicos.

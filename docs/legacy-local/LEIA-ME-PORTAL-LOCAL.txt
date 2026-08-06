@@ -1,0 +1,20 @@
+LAG CONTROLLER - PORTAL DO PACIENTE EM MODO LOCAL
+
+1. Não abra os arquivos HTML com duplo clique.
+2. Execute INICIAR-SISTEMA.bat na pasta principal.
+3. Acesse Laudos Médicos pela página aberta no navegador.
+4. Cadastre o laudo com:
+   - CPF válido;
+   - data de nascimento;
+   - PDF ou imagens;
+   - status Finalizado;
+   - opção Disponibilizar no portal marcada.
+5. No cartão do laudo, use o botão com ícone de usuário/escudo para testar o acesso.
+6. O portal local usa o mesmo navegador e o mesmo endereço 127.0.0.1:5500.
+
+IMPORTANTE
+- Os PDFs ficam no IndexedDB do navegador.
+- Os dados ficam no localStorage do navegador.
+- Limpar os dados do navegador remove os registros.
+- Outro computador não verá os arquivos nesta fase local.
+- Não há Cloudflare, D1, R2 ou API nesta versão.

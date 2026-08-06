@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "lag-controller",
+  "compatibility_date": "2026-08-06",
+  "pages_build_output_dir": "./public",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "lag-controller-db",
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "CANDIDATE_FILES",
+      "bucket_name": "lag-candidate-files"
+    },
+    {
+      "binding": "PARTNER_FILES",
+      "bucket_name": "lag-partner-files"
+    }
+  ],
+  "vars": {
+    "INITIAL_ADMIN_EMAIL": "gestor@lagcontroller.com",
+    "INITIAL_ADMIN_NAME": "Dr. Gestor",
+    "INITIAL_ADMIN_CITY": "Cerquilho"
+  }
+}

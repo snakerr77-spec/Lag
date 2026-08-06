@@ -1,0 +1,12 @@
+LAG Controller — Candidatos médicos
+
+- Logo do LAG Controller exibida automaticamente na topbar quando a sidebar é recolhida.
+- Compatibilidade visual dos controles com os temas claros e escuros do Perfil.
+- Tela de Candidatos médicos redesenhada com cores e ícones no padrão azul.
+- Botão Visualizar abre um painel completo, sem alert() do navegador.
+- Painel mostra todos os campos enviados pela ficha pública, status, data, cidade, experiência, link e currículo.
+- Currículo PDF pode ser pré-visualizado e baixado no modo local.
+- Ficha pública sem o sistema interno de notificações.
+- Ficha pública agora aceita currículo PDF, DOC ou DOCX de até 10 MB.
+- Modo local continua ativo: dados em localStorage e arquivos em IndexedDB.
+- Estrutura Cloudflare preparada em functions/ e cloudflare/, mas não ativada.

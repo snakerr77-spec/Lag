@@ -1,0 +1,15 @@
+LAG CONTROLLER — SUPORTE, LOGIN E SIDEBAR
+
+1. Login local inspirado no visual antigo do LAG Controller, com o lobo ao fundo.
+2. Autenticação local por e-mail, senha e cidade.
+3. Senha inicial para usuários sem senha própria: Lag2026.
+4. Suporte e atendimento no rodapé da sidebar de todas as páginas internas.
+5. Central de Ajuda no topo abre o mesmo mini chat.
+6. Triagem guiada com módulo, tipo de erro, impacto e descrição.
+7. Chamados salvos localmente e exibidos em Meu perfil > Suporte para o administrador.
+8. Ao enviar localmente, o chamado fica registrado no painel Meu perfil > Suporte do administrador.
+9. O atendimento não abre WhatsApp e permanece centralizado no perfil administrativo.
+10. A sidebar permanece aberta ao navegar entre módulos no desktop.
+
+IMPORTANTE
+Os chamados desta versão são armazenados localmente no navegador e consultados pelo perfil Administrador.

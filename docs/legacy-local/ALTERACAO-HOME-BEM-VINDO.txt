@@ -1,0 +1,6 @@
+ALTERAÇÃO DA HOME
+
+- Removida a saudação da barra superior.
+- O título principal agora mostra: Seja bem-vindo(a), Nome do usuário 👋
+- O nome continua sendo carregado automaticamente pelo perfil atual.
+- A grade da barra superior foi reajustada para ocupar corretamente o espaço livre.

@@ -1,0 +1,10 @@
+LAG CONTROLLER — AJUSTES DE 05/08/2026
+
+1. Seletores gerais de cidade movidos para o topo, imediatamente à direita da pesquisa.
+2. Cidade do usuário continua respeitando cargo, unidade do login e permissões.
+3. Home redesenhada com o lobo, cartões flutuantes e feixes de luz animados.
+4. Corrigido o carregamento do Almoxarifado, incluindo cadastro e listagem de produtos.
+5. Corrigido o botão de abrir/recolher a sidebar de Parceiros.
+6. Central de atendimento com respostas graduais, indicador de digitação e variações de fala.
+7. Atendimento removido do WhatsApp: os chamados ficam no perfil administrativo, na aba Suporte.
+8. Pesquisa e unidade foram padronizadas nas páginas internas, com adaptação responsiva.
