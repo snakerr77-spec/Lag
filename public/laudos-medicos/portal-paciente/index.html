@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4f8fd">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <title>LAG Controller | Portal seguro do paciente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="css/portal.css?v=20260803-white" rel="stylesheet">
+</head>
+<body data-public-page="true">
+  <header class="patient-topbar">
+    <a class="patient-brand" href="../../home-page/index.html" aria-label="LAG Controller">
+      <span><img src="../../assets/images/logo-lag-badge.png" alt="LAG Controller"></span>
+      <div><strong>LAG Controller</strong><small>Portal seguro do paciente</small></div>
+    </a>
+    <div class="security-chip"><i class="fa-solid fa-shield-halved"></i><span>Sessão protegida</span></div>
+  </header>
+
+  <main class="patient-page">
+    <section class="login-layout" id="loginView">
+      <article class="login-copy">
+        <span class="eyebrow"><i class="fa-solid fa-file-shield"></i> Documentos clínicos</span>
+        <h1>Consulte seus exames com segurança.</h1>
+        <p>Informe o CPF e a data de nascimento cadastrados pela clínica. Somente exames finalizados e liberados ficam disponíveis.</p>
+        <div class="security-list">
+          <div><i class="fa-solid fa-lock"></i><span><strong>Dados privados</strong><small>Os arquivos não possuem endereço público.</small></span></div>
+          <div><i class="fa-solid fa-clock"></i><span><strong>Sessão temporária</strong><small>O acesso expira automaticamente.</small></span></div>
+          <div><i class="fa-solid fa-eye-slash"></i><span><strong>Resposta protegida</strong><small>O sistema não revela quais dados estão incorretos.</small></span></div>
+        </div>
+      </article>
+
+      <section class="login-card">
+        <div class="login-card-icon"><i class="fa-solid fa-user-shield"></i></div>
+        <span class="eyebrow">Acesso do paciente</span>
+        <h2>Entrar no portal</h2>
+        <p>Use exatamente os dados informados no atendimento.</p>
+        <form id="patientLoginForm" autocomplete="off">
+          <label><span>CPF</span><div><i class="fa-regular fa-id-card"></i><input id="patientCpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required autocomplete="off"></div></label>
+          <label><span>Data de nascimento</span><div><i class="fa-regular fa-calendar"></i><input id="patientBirth" type="date" required autocomplete="bday"></div></label>
+          <button type="submit" id="loginButton"><i class="fa-solid fa-arrow-right-to-bracket"></i> Acessar meus exames</button>
+        </form>
+        <div class="login-message" id="loginMessage" hidden></div>
+        <small class="privacy-note"><i class="fa-solid fa-circle-info"></i> Por segurança, evite acessar em computadores públicos.</small>
+      </section>
+    </section>
+
+    <section class="portal-view" id="portalView" hidden>
+      <header class="portal-hero">
+        <div>
+          <span class="eyebrow">Área do paciente</span>
+          <h1>Olá, <span id="patientName">Paciente</span>.</h1>
+          <p id="patientSummary">Seus documentos liberados aparecem abaixo.</p>
+        </div>
+        <button id="logoutButton" type="button"><i class="fa-solid fa-right-from-bracket"></i> Sair com segurança</button>
+      </header>
+
+      <section class="portal-stats">
+        <article><span><i class="fa-solid fa-file-pdf"></i></span><div><strong id="reportCount">0</strong><small>laudos disponíveis</small></div></article>
+        <article><span><i class="fa-solid fa-images"></i></span><div><strong id="imageCount">0</strong><small>imagens disponíveis</small></div></article>
+        <article><span><i class="fa-solid fa-location-dot"></i></span><div><strong id="cityCount">0</strong><small>unidades com exames</small></div></article>
+      </section>
+
+      <section class="portal-toolbar">
+        <label><i class="fa-solid fa-magnifying-glass"></i><input id="examSearch" type="search" placeholder="Buscar por exame, médico ou cidade..."></label>
+        <select id="cityFilter"><option value="">Todas as cidades</option></select>
+        <select id="categoryFilter"><option value="">Todas as categorias</option></select>
+      </section>
+
+      <section class="exam-grid" id="examGrid" aria-live="polite"></section>
+    </section>
+  </main>
+
+  <section class="viewer" id="viewer" hidden aria-modal="true" role="dialog">
+    <button class="viewer-close" id="viewerClose" type="button" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="viewer-content" id="viewerContent"></div>
+  </section>
+
+  <footer class="patient-footer"><span>© 2026 LAG Controller</span><span>Documentos clínicos protegidos</span></footer>
+  <script src="js/portal.js?v=20260803-white"></script>
+</body>
+</html>
