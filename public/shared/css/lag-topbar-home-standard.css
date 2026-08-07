@@ -1,0 +1,347 @@
+/* ============================================================
+   LAG CONTROLLER — TOPBAR ÚNICA (PADRÃO HOME)
+   Camada visual isolada: não altera lógica dos módulos.
+   ============================================================ */
+
+body:not([data-public-page="true"]) .topbar.lag-topbar-standardized,
+body:not([data-public-page="true"]) .module-topbar.lag-topbar-standardized {
+  --lag-topbar-height: 76px;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 900 !important;
+  min-height: var(--lag-topbar-height) !important;
+  height: var(--lag-topbar-height) !important;
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 44px minmax(150px, 190px) minmax(360px, 1fr) auto !important;
+  align-items: center !important;
+  gap: 16px !important;
+  padding: 10px 28px !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line, #dce6f0) !important;
+  border-radius: 0 !important;
+  background: color-mix(in srgb, var(--surface, #ffffff) 96%, transparent) !important;
+  box-shadow: 0 8px 28px rgba(8, 38, 77, .045) !important;
+  backdrop-filter: blur(18px) !important;
+  overflow: visible !important;
+}
+
+/* Menu */
+.lag-topbar-standardized > .lag-standard-menu,
+.lag-topbar-standardized > .menu-button,
+.lag-topbar-standardized > .sidebar-toggle {
+  grid-column: 1 !important;
+  position: relative !important;
+  inset: auto !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 1px solid var(--line, #dce6f0) !important;
+  border-radius: 13px !important;
+  color: var(--text, #0b284e) !important;
+  background: var(--surface, #fff) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Marca no topo */
+.lag-standard-topbar-brand {
+  grid-column: 2 !important;
+  min-width: 0 !important;
+  display: grid !important;
+  grid-template-columns: 42px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: var(--text, #0b284e) !important;
+  text-decoration: none !important;
+}
+.lag-standard-topbar-brand img {
+  width: 42px !important;
+  height: 42px !important;
+  object-fit: contain !important;
+  padding: 5px !important;
+  border: 1px solid var(--line, #dce6f0) !important;
+  border-radius: 12px !important;
+  background: var(--surface, #fff) !important;
+}
+.lag-standard-topbar-brand span {
+  min-width: 0 !important;
+  display: grid !important;
+  gap: 2px !important;
+}
+.lag-standard-topbar-brand strong {
+  overflow: hidden !important;
+  color: var(--text, #0b284e) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: -.025em !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+.lag-standard-topbar-brand small {
+  overflow: hidden !important;
+  color: var(--muted, #71839a) !important;
+  font-size: 9px !important;
+  font-weight: 500 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Pesquisa + cidade */
+.lag-topbar-standardized > .lag-topbar-center-zone {
+  grid-column: 3 !important;
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  width: 100% !important;
+  max-width: 790px !important;
+  min-width: 0 !important;
+  justify-self: center !important;
+  display: grid !important;
+  grid-template-columns: minmax(240px, 1fr) 176px !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+.lag-topbar-standardized .lag-topbar-center-zone > .global-search,
+.lag-topbar-standardized .lag-topbar-center-zone > .topbar-search,
+.lag-topbar-standardized .lag-topbar-center-zone > .control-global-search,
+.lag-topbar-standardized .lag-topbar-center-zone > .profile-search,
+.lag-topbar-standardized .lag-topbar-center-zone > label[class*="search"],
+.lag-topbar-standardized .lag-topbar-center-zone > .topic-breadcrumb {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  display: grid !important;
+  grid-template-columns: auto minmax(0,1fr) auto !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 0 12px !important;
+  margin: 0 !important;
+  border: 1px solid var(--line, #dce6f0) !important;
+  border-radius: 13px !important;
+  color: var(--text, #0b284e) !important;
+  background: color-mix(in srgb, var(--surface, #fff) 96%, transparent) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+.lag-topbar-standardized .lag-topbar-center-zone input {
+  width: 100% !important;
+  min-width: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  color: var(--text, #0b284e) !important;
+  background: transparent !important;
+  font-size: 11px !important;
+}
+.lag-topbar-standardized .lag-topbar-center-zone input::placeholder { color: var(--muted, #71839a) !important; }
+.lag-topbar-standardized .lag-topbar-center-zone kbd {
+  padding: 4px 7px !important;
+  border: 1px solid var(--line, #dce6f0) !important;
+  border-radius: 6px !important;
+  color: var(--muted, #71839a) !important;
+  background: var(--surface, #fff) !important;
+  font-size: 8px !important;
+}
+
+.lag-topbar-standardized .lag-global-city-control {
+  width: 176px !important;
+  min-width: 176px !important;
+  height: 44px !important;
+  display: grid !important;
+  grid-template-columns: 30px minmax(0,1fr) 12px !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 0 10px 0 7px !important;
+  border: 1px solid var(--line, #dce6f0) !important;
+  border-radius: 13px !important;
+  color: var(--text, #0b284e) !important;
+  background: color-mix(in srgb, var(--surface, #fff) 96%, transparent) !important;
+  box-shadow: none !important;
+}
+.lag-topbar-standardized .lag-global-city-control > i:first-child {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 9px !important;
+  font-size: 12px !important;
+}
+.lag-topbar-standardized .lag-global-city-control select {
+  min-width: 0 !important;
+  height: 38px !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+}
+
+/* Ações */
+.lag-topbar-standardized > .topbar-actions,
+.lag-topbar-standardized > .topbar-menu {
+  grid-column: 4 !important;
+  position: relative !important;
+  inset: auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 9px !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+.lag-topbar-standardized .profile-button,
+.lag-topbar-standardized .topbar-profile {
+  min-width: 190px !important;
+  min-height: 46px !important;
+  display: grid !important;
+  grid-template-columns: 36px minmax(0,1fr) auto !important;
+  align-items: center !important;
+  gap: 9px !important;
+  padding: 5px 10px 5px 6px !important;
+  border: 1px solid var(--line, #dce6f0) !important;
+  border-radius: 13px !important;
+  color: var(--text, #0b284e) !important;
+  background: var(--surface, #fff) !important;
+  box-shadow: none !important;
+}
+.lag-topbar-standardized .profile-avatar,
+.lag-topbar-standardized .topbar-avatar {
+  width: 36px !important;
+  height: 36px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 50% !important;
+  color: #fff !important;
+  background: linear-gradient(135deg, var(--primary, #1478ff), var(--accent, #16c6c8)) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+}
+.lag-topbar-standardized .profile-button > span:nth-child(2),
+.lag-topbar-standardized .topbar-profile > span:nth-child(2) {
+  min-width: 0 !important;
+  display: grid !important;
+  gap: 1px !important;
+}
+.lag-topbar-standardized .profile-button strong,
+.lag-topbar-standardized .topbar-profile strong {
+  overflow: hidden !important;
+  font-size: 10px !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+.lag-topbar-standardized .profile-button small,
+.lag-topbar-standardized .topbar-profile small { color: var(--muted, #71839a) !important; font-size: 8px !important; }
+.lag-topbar-standardized .icon-button,
+.lag-topbar-standardized .lag-notification-button,
+.lag-topbar-standardized .lag-global-notification-button,
+.lag-topbar-standardized .topbar-icon-link {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  border: 1px solid var(--line, #dce6f0) !important;
+  border-radius: 13px !important;
+  color: var(--text, #0b284e) !important;
+  background: var(--surface, #fff) !important;
+}
+
+/* Elementos antigos que duplicavam a topbar */
+.lag-topbar-standardized > .welcome,
+.lag-topbar-standardized > .home-topbar-context,
+.lag-topbar-standardized > .home-city-control,
+.lag-topbar-standardized > #homeCityControl,
+.lag-topbar-standardized > .lag-global-unit-context,
+.lag-topbar-standardized > .topbar-context,
+.lag-topbar-standardized > .topbar-brand:not(.lag-standard-topbar-brand),
+.lag-topbar-standardized .module-theme-button,
+.lag-topbar-standardized #themeButton,
+.lag-topbar-standardized .topbar-icon-link[href*="home-page"] { display: none !important; }
+
+/* Escuro */
+html[data-theme*="dark"] .lag-topbar-standardized,
+body.dark .lag-topbar-standardized,
+body.theme-dark .lag-topbar-standardized {
+  background: color-mix(in srgb, var(--surface, #0b223d) 96%, transparent) !important;
+  border-bottom-color: color-mix(in srgb, var(--line, #284563) 80%, transparent) !important;
+}
+
+@media (max-width: 1240px) {
+  body:not([data-public-page="true"]) .topbar.lag-topbar-standardized,
+  body:not([data-public-page="true"]) .module-topbar.lag-topbar-standardized {
+    grid-template-columns: 44px 54px minmax(300px, 1fr) auto !important;
+    gap: 12px !important;
+    padding-inline: 18px !important;
+  }
+  .lag-standard-topbar-brand { grid-template-columns: 42px !important; }
+  .lag-standard-topbar-brand span { display: none !important; }
+  .lag-topbar-standardized > .lag-topbar-center-zone { max-width: 700px !important; }
+  .lag-topbar-standardized .profile-button,
+  .lag-topbar-standardized .topbar-profile { min-width: 148px !important; }
+}
+
+@media (max-width: 980px) {
+  body:not([data-public-page="true"]) .topbar.lag-topbar-standardized,
+  body:not([data-public-page="true"]) .module-topbar.lag-topbar-standardized {
+    height: auto !important;
+    min-height: 72px !important;
+    grid-template-columns: 44px 50px minmax(0,1fr) auto !important;
+    grid-template-rows: 52px auto !important;
+    padding: 8px 14px 10px !important;
+  }
+  .lag-topbar-standardized > .lag-topbar-center-zone {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    max-width: none !important;
+    grid-template-columns: minmax(0,1fr) 165px !important;
+  }
+  .lag-topbar-standardized .profile-button,
+  .lag-topbar-standardized .topbar-profile {
+    min-width: 46px !important;
+    grid-template-columns: 36px !important;
+    padding: 5px !important;
+  }
+  .lag-topbar-standardized .profile-button > span:nth-child(2),
+  .lag-topbar-standardized .profile-button > i,
+  .lag-topbar-standardized .topbar-profile > span:nth-child(2),
+  .lag-topbar-standardized .topbar-profile > i { display: none !important; }
+}
+
+@media (max-width: 620px) {
+  .lag-topbar-standardized > .lag-topbar-center-zone {
+    grid-template-columns: minmax(0,1fr) 142px !important;
+    gap: 8px !important;
+  }
+  .lag-topbar-standardized .lag-global-city-control {
+    width: 142px !important;
+    min-width: 142px !important;
+  }
+  .lag-topbar-standardized .lag-topbar-center-zone kbd { display: none !important; }
+}
+
+
+@media (min-width: 981px) {
+  body:not(.sidebar-hidden) .lag-standard-topbar-brand,
+  body:not(.sidebar-hidden) .topbar-brand,
+  body:not(.sidebar-hidden) .lag-collapsed-brand-mark {
+    display: none !important;
+  }
+  body.sidebar-hidden .lag-standard-topbar-brand,
+  body.sidebar-hidden .topbar-brand,
+  body.sidebar-hidden .lag-collapsed-brand-mark {
+    display: grid !important;
+  }
+}

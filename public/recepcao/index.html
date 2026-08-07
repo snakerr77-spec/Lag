@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light-blue">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4f8fc">
+  <title>LAG Controller | Recepção e fila médica</title>
+  <meta name="description" content="Cadastro de pacientes, fila de atendimento e evolução clínica.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="../home-page/css/home.css" rel="stylesheet">
+  <link href="../shared/css/lag-settings.css" rel="stylesheet">
+  <link href="../shared/css/lag-experience.css" rel="stylesheet">
+  <link href="../shared/css/lag-notifications.css?v=20260804" rel="stylesheet">
+  <link href="../shared/css/lag-support.css?v=20260805-ai" rel="stylesheet">
+  <link href="../shared/css/lag-topbar-center.css?v=20260805" rel="stylesheet">
+  <link href="../shared/css/lag-global-city.css?v=20260805" rel="stylesheet">
+  <link href="../shared/css/lag-topbar-home-standard.css?v=20260805-final" rel="stylesheet">
+  <link href="css/recepcao.css?v=20260805" rel="stylesheet">
+  <link href="../shared/css/lag-topbar-clean.css?v=20260805" rel="stylesheet">
+</head>
+<body data-module-id="recepcao">
+<script src="../shared/js/lag-auth-guard.js?v=20260804"></script>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="../home-page/index.html">
+      <span class="brand-badge"><img src="../assets/images/logo-lag-badge.png" alt="LAG"></span>
+      <span class="brand-copy"><strong>LAG Controller</strong><small>Recepção clínica</small></span>
+    </a>
+    <nav class="sidebar-nav" aria-label="Navegação principal">
+      <a class="nav-item" data-module-id="home" href="../home-page/index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a class="nav-item active" data-module-id="recepcao" href="./index.html"><i class="fa-solid fa-hospital-user"></i><span>Recepção</span></a>
+      <a class="nav-item" data-module-id="prontuario" href="../prontuario-medico/index.html"><i class="fa-solid fa-notes-medical"></i><span>Prontuário</span></a>
+      <a class="nav-item" data-module-id="perfil" href="../perfil/index.html"><i class="fa-solid fa-user-gear"></i><span>Meu perfil</span></a>
+    </nav>
+    <div class="sidebar-status"><span class="status-dot"></span><div><strong>Fila sincronizada</strong><small>Armazenamento local</small></div></div>
+  </aside>
+
+  <div class="main-area">
+    <header class="topbar">
+      <button class="menu-button" id="menuButton" type="button" aria-label="Mostrar ou ocultar menu"><i class="fa-solid fa-bars"></i></button>
+      <div class="lag-global-unit-context"><span>Central clínica</span><strong>Recepção e fila médica</strong><small><i class="fa-solid fa-location-dot"></i> <b data-active-city>Cerquilho</b><i class="context-separator"></i><em data-current-user-role>Administrador</em></small></div>
+      <label class="global-search"><i class="fa-solid fa-magnifying-glass"></i><input id="queueSearch" type="search" placeholder="Buscar paciente, CPF ou médico..."><kbd>Ctrl K</kbd></label>
+      <div class="topbar-actions">
+        <a class="profile-button" href="../perfil/index.html"><span class="profile-avatar" data-current-user-initials>DG</span><span><strong data-current-user-name>Usuário</strong><small data-current-user-role>Perfil</small></span><i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+    </header>
+
+    <main class="reception-main">
+      <section class="reception-hero">
+        <div>
+          <span class="reception-eyebrow"><i class="fa-solid fa-hospital-user"></i> Fluxo de atendimento</span>
+          <h1>Recepção e fila médica</h1>
+          <p>Cadastre o paciente, encaminhe para o médico do dia e acompanhe todo o atendimento até a finalização.</p>
+        </div>
+        <button class="primary-button" id="newPatientButton" type="button"><i class="fa-solid fa-user-plus"></i> Cadastrar paciente</button>
+      </section>
+
+      <section class="reception-stats" aria-label="Resumo da fila">
+        <article><span class="stat-icon waiting"><i class="fa-solid fa-clock"></i></span><div><small>Aguardando</small><strong id="waitingCount">0</strong><em>na fila</em></div></article>
+        <article><span class="stat-icon serving"><i class="fa-solid fa-stethoscope"></i></span><div><small>Em atendimento</small><strong id="servingCount">0</strong><em>agora</em></div></article>
+        <article><span class="stat-icon done"><i class="fa-solid fa-circle-check"></i></span><div><small>Atendidos</small><strong id="doneCount">0</strong><em>hoje</em></div></article>
+        <article><span class="stat-icon average"><i class="fa-solid fa-stopwatch"></i></span><div><small>Tempo médio</small><strong id="averageTime">00:00</strong><em>atendimentos finalizados</em></div></article>
+      </section>
+
+      <section class="reception-toolbar">
+        <div class="view-tabs" role="tablist" aria-label="Visualização da recepção">
+          <button class="active" data-view="queue" type="button"><i class="fa-solid fa-list-ol"></i> Fila completa</button>
+          <button data-view="waiting" type="button"><i class="fa-solid fa-clock"></i> Aguardando</button>
+          <button data-view="in-service" type="button"><i class="fa-solid fa-user-doctor"></i> Em atendimento</button>
+          <button data-view="attended" type="button"><i class="fa-solid fa-check-double"></i> Atendidos</button>
+        </div>
+        <label class="doctor-filter"><i class="fa-solid fa-user-doctor"></i><select id="doctorFilter" aria-label="Filtrar por médico"><option value="">Todos os médicos</option></select></label>
+      </section>
+
+      <section class="queue-panel">
+        <header class="queue-panel-head">
+          <div><span>ATENDIMENTOS DO DIA</span><h2>Fila de pacientes</h2><p id="queueCaption">Pacientes cadastrados na unidade selecionada.</p></div>
+          <button class="secondary-button" id="refreshQueue" type="button"><i class="fa-solid fa-rotate"></i> Atualizar</button>
+        </header>
+        <div class="queue-list" id="queueList"></div>
+        <div class="queue-empty" id="queueEmpty" hidden><span><i class="fa-solid fa-clipboard-list"></i></span><h3>Nenhum paciente nesta fila</h3><p>Cadastre um paciente ou altere os filtros para visualizar outros atendimentos.</p></div>
+      </section>
+    </main>
+  </div>
+</div>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="reception-modal" id="registrationModal" hidden>
+  <form class="reception-modal-card registration-card" id="registrationForm">
+    <header><div><span>NOVO ATENDIMENTO</span><h2>Cadastrar paciente</h2><p>Os dados serão enviados para a fila do médico selecionado.</p></div><button type="button" data-close-registration aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button></header>
+    <div class="form-grid">
+      <label class="wide"><span>Nome completo *</span><input id="patientName" required maxlength="120" autocomplete="name"></label>
+      <label><span>CPF *</span><input id="patientCpf" required inputmode="numeric" maxlength="14" placeholder="000.000.000-00"></label>
+      <label><span>Data de nascimento *</span><input id="patientBirth" type="date" required></label>
+      <label><span>Telefone *</span><input id="patientPhone" required inputmode="tel" maxlength="15" placeholder="(15) 99999-9999"></label>
+      <label><span>CEP</span><input id="patientCep" inputmode="numeric" maxlength="9" placeholder="00000-000"><small id="receptionCepStatus" class="reception-cep-status">Digite o CEP para preencher o endereço.</small></label>
+      <label><span>Número da residência</span><input id="patientHouseNumber" maxlength="20" placeholder="Ex.: 125"></label>
+      <label class="wide"><span>Rua / Logradouro</span><input id="patientStreet" maxlength="160" placeholder="Preenchida automaticamente pelo CEP"></label>
+      <label><span>Bairro</span><input id="patientNeighborhood" maxlength="100"></label>
+      <label><span>Complemento</span><input id="patientComplement" maxlength="100" placeholder="Apartamento, bloco ou referência"></label>
+      <label><span>Cidade</span><input id="patientAddressCity" maxlength="100"></label>
+      <label><span>UF</span><input id="patientAddressState" maxlength="2" placeholder="SP"></label>
+      <label><span>Tipo de atendimento *</span><select id="patientPayment" required><option value="Cartão de Todos">Cartão de Todos</option><option value="Particular">Particular</option></select></label>
+      <label class="wide"><span>Médico que está atendendo hoje *</span><input id="patientDoctor" list="doctorOptions" required maxlength="100" placeholder="Digite ou selecione o médico"></label>
+      <datalist id="doctorOptions">
+        <option value="Dr. Pedro"></option><option value="Dr. Leandro"></option><option value="Dra. Isabelli"></option><option value="Dra. Lisa"></option><option value="Dr. Carlos"></option><option value="Dr. George"></option>
+      </datalist>
+      <label class="wide"><span>Observação da recepção</span><textarea id="receptionNote" rows="3" maxlength="500" placeholder="Informação opcional para o médico"></textarea></label>
+    </div>
+    <footer><button class="secondary-button" type="button" data-close-registration>Cancelar</button><button class="primary-button" type="submit"><i class="fa-solid fa-paper-plane"></i> Enviar para a fila</button></footer>
+  </form>
+</div>
+
+<div class="reception-modal" id="consultationModal" hidden>
+  <form class="reception-modal-card consultation-card" id="consultationForm">
+    <header>
+      <div><span>ATENDIMENTO MÉDICO</span><h2 id="consultationPatientName">Paciente</h2><p id="consultationPatientMeta">Dados do atendimento</p></div>
+      <button type="button" data-close-consultation aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    </header>
+    <input type="hidden" id="consultationPatientId">
+    <div class="consultation-status-line"><span class="live-dot"></span><strong>Tempo de atendimento</strong><b id="consultationTimer">00:00:00</b></div>
+    <div class="clinical-form">
+      <label><span>Sintomas *</span><textarea id="consultationSymptoms" rows="4" required placeholder="Descreva os sintomas relatados pelo paciente"></textarea></label>
+      <label><span>Anamnese *</span><textarea id="consultationAnamnesis" rows="6" required placeholder="Histórico, alergias, medicamentos em uso e avaliação clínica"></textarea></label>
+      <label><span>Receituário</span><textarea id="consultationPrescription" rows="5" placeholder="Medicamentos, dosagem e orientações"></textarea></label>
+      <fieldset class="exam-fieldset">
+        <legend>Foi solicitado exame?</legend>
+        <div class="radio-group"><label><input type="radio" name="examRequested" value="no" checked> Não</label><label><input type="radio" name="examRequested" value="yes"> Sim</label></div>
+        <div class="exam-details" id="examDetailsBlock" hidden>
+          <label><span>Exames solicitados *</span><textarea id="consultationExams" rows="4" placeholder="Informe os exames e a indicação clínica"></textarea></label>
+          <label class="print-choice"><input id="printExamAfterFinish" type="checkbox"><span><strong>Imprimir pedido ao finalizar</strong><small>O sistema abrirá o pedido de exames pronto para impressão.</small></span></label>
+        </div>
+      </fieldset>
+      <label><span>Observações e orientações finais</span><textarea id="consultationGuidance" rows="4" placeholder="Retorno, cuidados e demais orientações"></textarea></label>
+    </div>
+    <footer>
+      <button class="secondary-button" type="button" data-close-consultation>Fechar</button>
+      <button class="secondary-button" id="saveConsultationDraft" type="button"><i class="fa-solid fa-floppy-disk"></i> Salvar rascunho</button>
+      <button class="primary-button success" type="submit"><i class="fa-solid fa-check"></i> Finalizar atendimento</button>
+    </footer>
+  </form>
+</div>
+
+<div class="toast-region" id="toastRegion" aria-live="polite"></div>
+
+<script src="../shared/js/sidebar-config.js"></script>
+<script src="../shared/js/lag-settings.js?v=20260805-recepcao"></script>
+<script src="../shared/js/page-shell.js"></script>
+<script src="../shared/js/lag-experience.js"></script>
+<script src="js/recepcao.js?v=20260806-cep"></script>
+<script src="../controle/js/drive-manifest.js?v=20260804"></script>
+<script src="../shared/js/lag-notifications.js?v=20260804"></script>
+<script src="../shared/js/lag-api-config.js?v=20260804"></script>
+<script src="../shared/js/lag-support.js?v=20260805-ai"></script>
+<script src="../shared/js/lag-global-city.js?v=20260805"></script>
+<script src="../shared/js/lag-topbar-home-standard.js?v=20260805-final"></script>
+<script src="../shared/js/lag-topbar-clean.js?v=20260805"></script>
+</body>
+</html>
