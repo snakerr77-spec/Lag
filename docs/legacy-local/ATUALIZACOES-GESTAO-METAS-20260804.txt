@@ -1,9 +1,0 @@
-LAG Controller — Gestão e Metas refinada
-
-- Tema da Gestão e Metas agora usa as mesmas variáveis escolhidas no Perfil.
-- Faturamento Total aparece primeiro na tabela e no gráfico.
-- Resumo mostra faturamento atual, meta, falta e indicadores atingidos.
-- Gráfico foi refeito com valores atuais, meta, falta, necessidade por dia e animação de 0 até o resultado ao abrir a aba.
-- Tabela cresce verticalmente conforme novos indicadores são cadastrados.
-- Mensagens promocionais abaixo do título foram removidas.
-- Contexto Central operacional / Painel da unidade foi padronizado nas páginas internas e aparece somente quando a sidebar está aberta.

@@ -1,8 +1,0 @@
-AJUSTE REALIZADO NA VISÃO GERAL
-
-- Removida da exibição a leitura técnica completa da planilha.
-- Removida da exibição a tabela bruta com linhas e colunas.
-- Removidos da exibição os cards técnicos de alertas, meta, pendências e dados lidos desse bloco.
-- Mantidos os controles para escolher cidade, planilha e adicionar arquivos.
-- Mantida a leitura interna das planilhas para alimentar KPIs, gráficos e indicadores do dashboard.
-- Pastas sem planilha continuam sem gerar dados fictícios.
