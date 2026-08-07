@@ -1,0 +1,259 @@
+:root{
+  --lag-primary:#0d6efd;
+  --lag-primary-2:#38bdf8;
+  --lag-accent:#11c5d9;
+  --lag-ink:#0f2740;
+  --lag-ink-soft:#567086;
+  --lag-line:#dbe8f2;
+  --lag-surface:#ffffff;
+  --lag-surface-soft:#f5fbff;
+  --lag-surface-2:#eef8ff;
+  --lag-shadow:0 18px 45px rgba(13, 39, 64, .08);
+  --lag-shadow-strong:0 26px 70px rgba(13, 39, 64, .14);
+  --lag-radius:24px;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:
+    radial-gradient(circle at 0% 0%, rgba(13,110,253,.10), transparent 30%),
+    radial-gradient(circle at 100% 0%, rgba(17,197,217,.10), transparent 28%),
+    linear-gradient(180deg, #fbfeff 0%, #f2f8fd 100%);
+  color:var(--lag-ink);
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(13,110,253,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,110,253,.045) 1px, transparent 1px);
+  background-size:40px 40px;
+  mask-image:linear-gradient(180deg, #000 0%, transparent 70%);
+}
+
+img{
+  max-width:100%;
+}
+
+.profile-topbar,
+.admin-topbar,
+.control-topbar,
+.hiring-topbar,
+.medical-page-topbar,
+.site-header,
+.curso-nav,
+header.topbar,
+header{
+  background:rgba(255,255,255,.94) !important;
+  border-bottom:1px solid var(--lag-line) !important;
+  box-shadow:0 12px 35px rgba(13,39,64,.06) !important;
+  backdrop-filter:blur(18px);
+}
+
+.profile-topbar .brand,
+.admin-topbar .brand,
+.control-topbar .brand,
+.hiring-brand,
+.medical-page-brand,
+.site-header .brand,
+.topbar .brand,
+.topbar .logo-box,
+.login-header .brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--lag-ink) !important;
+  font-weight:900;
+}
+
+.profile-topbar .brand img,
+.admin-topbar .brand img,
+.control-topbar .brand img,
+.hiring-brand img,
+.medical-page-brand img,
+.site-header .brand img,
+.topbar .brand img,
+.topbar .logo-box img,
+.login-header .brand img,
+.footer-logo img{
+  background:transparent !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  object-fit:contain;
+}
+
+.profile-topbar nav,
+.admin-topbar nav,
+.control-topbar nav,
+.hiring-nav nav,
+.medical-page-links,
+.site-header .main-nav,
+.curso-nav,
+.topbar-menu,
+.topbar nav{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.profile-topbar nav a,
+.profile-topbar nav button,
+.admin-topbar nav a,
+.admin-topbar nav button,
+.control-topbar nav a,
+.control-topbar nav button,
+.hiring-nav nav a,
+.hiring-nav nav button,
+.medical-page-links a,
+.medical-page-links button,
+.site-header .main-nav a,
+.site-header .btn-colaborador,
+.curso-nav a,
+.topbar-menu a,
+.topbar nav a,
+.topbar nav button{
+  color:var(--lag-ink) !important;
+  background:linear-gradient(180deg, #ffffff, #f3faff) !important;
+  border:1px solid var(--lag-line) !important;
+  border-radius:999px !important;
+  padding:10px 14px !important;
+  font-weight:800 !important;
+  text-decoration:none;
+  box-shadow:0 8px 20px rgba(13,39,64,.05);
+}
+
+.profile-topbar nav a:hover,
+.profile-topbar nav button:hover,
+.admin-topbar nav a:hover,
+.admin-topbar nav button:hover,
+.control-topbar nav a:hover,
+.control-topbar nav button:hover,
+.hiring-nav nav a:hover,
+.hiring-nav nav button:hover,
+.medical-page-links a:hover,
+.medical-page-links button:hover,
+.site-header .main-nav a:hover,
+.site-header .btn-colaborador:hover,
+.curso-nav a:hover,
+.topbar-menu a:hover,
+.topbar nav a:hover,
+.topbar nav button:hover{
+  transform:translateY(-1px);
+  border-color:rgba(13,110,253,.25) !important;
+  color:var(--lag-primary) !important;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+input,
+select,
+textarea{
+  border-color:var(--lag-line) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:none;
+  border-color:rgba(13,110,253,.35) !important;
+  box-shadow:0 0 0 4px rgba(13,110,253,.12) !important;
+}
+
+.hero-admin,
+.control-hero,
+.hiring-hero,
+.hero-panel,
+.page-head,
+.topo-curso,
+.training-hero,
+.profile-card,
+.control-card,
+.hiring-card,
+.medical-record-form,
+.medical-body-card,
+.curso-layout,
+.login-card{
+  box-shadow:var(--lag-shadow) !important;
+}
+
+.eyebrow,
+.hero-kicker,
+.page-kicker,
+.tag-curso,
+.hiring-eyebrow,
+.unit-label,
+.secure-pill,
+.hero-badge{
+  background:rgba(13,110,253,.10) !important;
+  color:var(--lag-primary) !important;
+  border:1px solid rgba(13,110,253,.12) !important;
+}
+
+.btn-vermelho,
+.submit-btn,
+.medical-primary-btn,
+.medical-primary-link,
+.btn-painel,
+button.primary,
+button[type="submit"]{
+  background:linear-gradient(135deg, var(--lag-primary), var(--lag-primary-2)) !important;
+  color:#fff !important;
+  border:0 !important;
+  box-shadow:0 16px 35px rgba(13,110,253,.24) !important;
+}
+
+.btn-outline,
+.medical-ghost-btn,
+.medical-mini-btn,
+button.secondary{
+  background:linear-gradient(180deg,#fff,#f2f9ff) !important;
+  color:var(--lag-primary) !important;
+  border:1px solid rgba(13,110,253,.16) !important;
+}
+
+.back-home-btn,
+.btn-colaborador{
+  background:linear-gradient(180deg,#fff,#f2f9ff) !important;
+  color:var(--lag-primary) !important;
+}
+
+.footer,
+footer.footer,
+.login-footer{
+  background:linear-gradient(135deg, #0d2236 0%, #103a63 55%, #0d6efd 100%) !important;
+  color:#f7fbff !important;
+}
+
+.footer a,
+.footer p,
+.footer-copy,
+.login-footer span{
+  color:rgba(255,255,255,.92) !important;
+}
+
+@media (max-width: 900px){
+  .profile-topbar,
+  .admin-topbar,
+  .control-topbar,
+  .hiring-nav,
+  .medical-page-nav,
+  .header-wrap,
+  .curso-nav,
+  header .container.topbar{
+    gap:10px;
+  }
+}

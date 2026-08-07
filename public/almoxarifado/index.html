@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html data-theme="light-blue" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#f5f8fc" name="theme-color"/>
+<title>LAG Controller | Almoxarifado</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="css/almoxarifado.css?v=20260731c" rel="stylesheet"/><link href="../shared/css/lag-settings.css?v=20260731-sidebar-labels-fix" rel="stylesheet"/>
+<link href="../shared/css/lag-experience.css?v=20260804-contexto" rel="stylesheet"/><link href="../shared/css/lag-notifications.css?v=20260804" rel="stylesheet"/><link href="../shared/css/lag-support.css?v=20260805-ai" rel="stylesheet"/><link href="../shared/css/lag-topbar-center.css?v=20260805" rel="stylesheet"/><link href="../shared/css/lag-global-city.css?v=20260805" rel="stylesheet"/>
+<link href="../shared/css/lag-topbar-home-standard.css?v=20260805-final" rel="stylesheet"/><link href="../shared/css/lag-topbar-clean.css?v=20260805" rel="stylesheet">
+</head>
+<body data-module-id="almoxarifado"><script src="../shared/js/lag-auth-guard.js?v=20260804"></script>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<a aria-label="Ir para a página inicial" class="brand" href="../home-page/index.html">
+<span class="brand-badge"><img alt="LAG Controller" src="../controle/../assets/images/logo-lag-badge.png"/></span>
+<span class="brand-copy"><strong>LAG Controller</strong><small>Painel executivo clínico</small></span>
+</a>
+<nav aria-label="Navegação principal" class="sidebar-nav">
+<a class="nav-item" data-module-id="home" href="../home-page/index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+<a class="nav-item" data-module-id="geral" href="../controle/index.html?view=geral"><i class="fa-solid fa-chart-pie"></i><span>Visão geral</span></a>
+<a class="nav-item" data-module-id="exames" href="../controle/index.html?view=exames"><i class="fa-solid fa-microscope"></i><span>Exames</span></a>
+<a class="nav-item" data-module-id="consultas" href="../controle/index.html?view=consultas"><i class="fa-solid fa-user-doctor"></i><span>Consultas</span></a>
+<div class="nav-divider"></div>
+<a class="nav-item" data-module-id="medicos" href="../medicos-exames/index.html"><i class="fa-solid fa-stethoscope"></i><span>Médicos e exames</span></a>
+<a class="nav-item" data-module-id="prontuario" href="../prontuario-medico/index.html"><i class="fa-solid fa-notes-medical"></i><span>Prontuário</span></a>
+<a class="nav-item" data-module-id="controladoria" href="../controladoria/index.html"><i class="fa-solid fa-folder-tree"></i><span>Controladoria</span></a>
+<a class="nav-item" data-module-id="treinamentos" href="../treinamentos/index.html"><i class="fa-solid fa-graduation-cap"></i><span>Treinamentos</span></a>
+<a aria-current="page" class="nav-item active" data-module-id="almoxarifado" href="./index.html"><i class="fa-solid fa-boxes-stacked"></i><span>Almoxarifado</span></a>
+<a class="nav-item" data-module-id="perfil" href="../perfil/index.html"><i class="fa-solid fa-user-gear"></i><span>Meu perfil</span></a>
+</nav>
+<div class="sidebar-status">
+<span class="status-dot"></span>
+<div><strong>Sessão temporária</strong><small id="sidebarUpdate">Reinicia ao atualizar</small></div>
+</div>
+</aside>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="main-area">
+<header class="topbar">
+<button aria-expanded="true" aria-label="Ocultar menu lateral" class="menu-button" id="menuButton" type="button"><i class="fa-solid fa-bars"></i></button>
+<div class="lag-global-unit-context" aria-label="Contexto da unidade">
+  <span>Controle operacional</span>
+  <strong>Almoxarifado da unidade</strong>
+  <small><i class="fa-solid fa-location-dot"></i> <b data-active-city>Cerquilho</b><i class="context-separator"></i><em data-current-user-role>Administrador</em></small>
+</div>
+<label class="global-search">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="globalSearch" placeholder="Buscar produto, código ou fornecedor..." type="search"/>
+<kbd>⌘ K</kbd>
+</label>
+<div class="topbar-actions">
+<button aria-label="Alterar tema" class="icon-button module-theme-button" id="themeButton" type="button" hidden><i class="fa-solid fa-palette"></i></button>
+
+<button class="profile-button" type="button">
+<span class="profile-avatar">DG</span>
+<span><strong>Dr. Gestor</strong><small id="profileRole">Administrador</small></span>
+<i class="fa-solid fa-chevron-down"></i>
+</button>
+</div>
+</header>
+<main class="inventory-page" id="inventoryPage">
+<section class="page-heading">
+<div>
+<span class="eyebrow"><i class="fa-solid fa-boxes-stacked"></i> Controle de suprimentos</span>
+<h1>Almoxarifado</h1>
+<p>Gerencie produtos, compras, entradas, saídas e fornecedores em um único lugar.</p>
+<span class="access-badge"><i class="fa-solid fa-shield-halved"></i> Estoque separado por unidade e perfil de acesso</span>
+</div>
+<div class="heading-actions">
+<button class="button secondary" id="exportInventory" type="button"><i class="fa-solid fa-file-export"></i> Exportar estoque</button>
+<button class="button primary" data-open-tab="requests" type="button"><i class="fa-solid fa-plus"></i> Nova solicitação</button>
+</div>
+</section>
+<section aria-label="Resumo do almoxarifado" class="stats-grid">
+<article class="stat-card blue"><span class="stat-icon"><i class="fa-solid fa-boxes-stacked"></i></span><div><small>Produtos cadastrados</small><strong id="statProducts">0</strong><span>itens nesta sessão</span></div></article>
+<article class="stat-card green"><span class="stat-icon"><i class="fa-solid fa-cubes"></i></span><div><small>Unidades em estoque</small><strong id="statUnits">0</strong><span>saldo disponível</span></div></article>
+<article class="stat-card orange"><span class="stat-icon"><i class="fa-solid fa-triangle-exclamation"></i></span><div><small>Estoque baixo</small><strong id="statLow">0</strong><span>precisam de reposição</span></div></article>
+<article class="stat-card purple finance-only hidden"><span class="stat-icon"><i class="fa-solid fa-clipboard-list"></i></span><div><small>Solicitações abertas</small><strong id="statRequests">0</strong><span>aguardando conclusão</span></div></article>
+</section>
+<section class="module-shell">
+<div aria-label="Áreas do almoxarifado" class="module-tabs" role="tablist">
+<button aria-selected="true" class="module-tab active" data-tab="overview" role="tab"><i class="fa-solid fa-gauge-high"></i><span>Visão geral</span></button>
+<button class="module-tab" data-tab="stock" role="tab"><i class="fa-solid fa-warehouse"></i><span>Estoque</span></button>
+<button class="module-tab" data-tab="requests" role="tab"><i class="fa-solid fa-cart-plus"></i><span>Solicitar produto</span></button>
+<button class="module-tab finance-only hidden" data-tab="finance-requests" id="financeRequestsTab" role="tab"><i class="fa-solid fa-file-circle-check"></i><span>Solicitações cadastradas</span><span class="tab-counter" id="financeRequestsCounter">0</span></button>
+<button class="module-tab" data-tab="outgoing" role="tab"><i class="fa-solid fa-arrow-up-from-bracket"></i><span>Saída</span></button>
+<button class="module-tab" data-tab="register" role="tab"><i class="fa-solid fa-box-open"></i><span>Cadastro</span></button>
+<button class="module-tab" data-tab="scanner" role="tab"><i class="fa-solid fa-barcode"></i><span>Scanner</span></button>
+</div>
+<div class="tab-panel active" data-panel="overview" role="tabpanel">
+<div class="overview-grid">
+<article class="panel large-panel finance-only hidden" id="overviewFinanceRequests">
+<div class="panel-header"><div><span class="panel-kicker">Administração</span><h2>Solicitações recentes</h2></div><button class="text-button" data-open-tab="finance-requests" type="button">Solicitações cadastradas <i class="fa-solid fa-arrow-right"></i></button></div>
+<div class="table-scroll"><table><thead><tr><th>Item</th><th>Quantidade</th><th>Solicitante</th><th>Prioridade</th><th>Status</th></tr></thead><tbody id="overviewRequestsBody"></tbody></table></div>
+</article>
+<article class="panel suppliers-panel">
+<div class="panel-header"><div><span class="panel-kicker">Parceiros</span><h2>Top fornecedores</h2></div></div>
+<div class="supplier-list" id="supplierList"></div>
+</article>
+<article class="panel large-panel">
+<div class="panel-header"><div><span class="panel-kicker">Estoque</span><h2>Produtos em nível crítico</h2></div><button class="text-button" data-open-tab="stock" type="button">Abrir estoque <i class="fa-solid fa-arrow-right"></i></button></div>
+<div class="critical-list" id="criticalList"></div>
+</article>
+<article class="panel quick-panel">
+<div class="panel-header"><div><span class="panel-kicker">Atalhos</span><h2>Ações rápidas</h2></div></div>
+<div class="quick-actions">
+<button data-open-tab="scanner" type="button"><i class="fa-solid fa-barcode"></i><span><strong>Escanear produto</strong><small>Câmera ou leitor USB</small></span></button>
+<button data-open-tab="register" type="button"><i class="fa-solid fa-square-plus"></i><span><strong>Cadastrar produto</strong><small>Adicionar ao banco</small></span></button>
+<button data-open-tab="outgoing" type="button"><i class="fa-solid fa-arrow-up-from-bracket"></i><span><strong>Registrar saída</strong><small>Baixar do estoque</small></span></button>
+<button data-open-tab="requests" type="button"><i class="fa-solid fa-cart-plus"></i><span><strong>Solicitar compra</strong><small>Criar requisição</small></span></button>
+<button class="finance-only hidden" data-open-tab="finance-requests" type="button"><i class="fa-solid fa-clipboard-check"></i><span><strong>Solicitações cadastradas</strong><small>Aprovar e acompanhar compras</small></span></button>
+</div>
+</article>
+</div>
+</div>
+<div class="tab-panel" data-panel="stock" role="tabpanel">
+<div class="panel full-panel">
+<div class="panel-header stock-header">
+<div><span class="panel-kicker">Banco de produtos</span><h2>Estoque atual</h2></div>
+<div class="panel-actions">
+<select aria-label="Filtrar por status" id="stockStatusFilter"><option value="all">Todos os status</option><option value="normal">Normal</option><option value="low">Baixo</option><option value="critical">Crítico</option></select>
+<select aria-label="Filtrar por categoria" id="stockCategoryFilter"><option value="all">Todas as categorias</option></select>
+<button class="button compact secondary" data-open-tab="scanner" type="button"><i class="fa-solid fa-barcode"></i> Scanner</button>
+<button class="button compact primary" data-open-tab="register" type="button"><i class="fa-solid fa-plus"></i> Produto</button>
+</div>
+</div>
+<div class="table-scroll"><table class="data-table"><thead><tr><th>Produto</th><th>Código</th><th>Categoria</th><th>Estoque</th><th>Mínimo</th><th>Local</th><th>Status</th><th>Ações</th></tr></thead><tbody id="stockTableBody"></tbody></table></div>
+<div class="empty-state" id="stockEmpty"><i class="fa-solid fa-box-open"></i><strong>Nenhum produto encontrado</strong><span>Altere os filtros ou cadastre um novo produto.</span></div>
+</div>
+</div>
+<div class="tab-panel" data-panel="requests" role="tabpanel">
+<div class="form-layout request-create-layout">
+<article class="panel form-panel">
+<div class="panel-header"><div><span class="panel-kicker">Nova requisição</span><h2>Solicitação de produtos</h2></div></div>
+<form class="smart-form" id="requestForm">
+<label class="field span-2">
+<span>Produto solicitado</span>
+<input autocomplete="off" id="requestProduct" list="requestProductOptions" placeholder="Digite um produto novo ou escolha um item do estoque" required=""/>
+<datalist id="requestProductOptions"></datalist>
+<small class="field-help" id="requestProductHint">Você pode escrever um produto que ainda não existe no estoque ou selecionar um item já cadastrado para reposição.</small>
+</label>
+<label class="field"><span>Quantidade</span><input id="requestQuantity" min="1" placeholder="Ex.: 10" required="" type="number"/></label>
+<label class="field"><span>Prioridade</span><select id="requestPriority" required=""><option value="Baixa">Baixa</option><option selected="" value="Média">Média</option><option value="Alta">Alta</option><option value="Urgente">Urgente</option></select></label>
+<label class="field"><span>Solicitante</span><input id="requester" required="" value="Dr. Gestor"/></label>
+<label class="field"><span>Setor</span><select id="requestDepartment" required=""><option>Laboratório</option><option>Coleta</option><option>Higienização</option><option>Administrativo</option><option>Consultório</option></select></label>
+<label class="field span-2"><span>Justificativa</span><textarea id="requestReason" placeholder="Explique a necessidade da compra..." rows="3"></textarea></label>
+<button class="button primary span-2" type="submit"><i class="fa-solid fa-paper-plane"></i> Enviar ao Financeiro</button>
+</form>
+</article>
+<article class="panel request-info-panel">
+<span class="request-info-icon"><i class="fa-solid fa-shield-halved"></i></span>
+<span class="panel-kicker">Fluxo protegido</span>
+<h2>A solicitação será enviada ao Financeiro</h2>
+<p>Após o envio, apenas usuários com perfil <strong>Financeiro</strong> ou <strong>Administrador</strong> poderão visualizar o pedido completo, aprovar, recusar, marcar como em compra, confirmar a compra e concluir a solicitação.</p>
+<div class="request-flow">
+<span><b>1</b> Solicitação enviada</span>
+<span><b>2</b> Análise financeira</span>
+<span><b>3</b> Produto em compra</span>
+<span><b>4</b> Compra confirmada e concluída</span>
+</div>
+</article>
+</div>
+</div>
+<div class="tab-panel finance-only-panel" data-panel="finance-requests" role="tabpanel">
+<div class="finance-request-summary">
+<article><span class="summary-icon pending"><i class="fa-regular fa-clock"></i></span><div><small>Aguardando análise</small><strong id="financePendingCount">0</strong></div></article>
+<article><span class="summary-icon approved"><i class="fa-solid fa-circle-check"></i></span><div><small>Aprovadas</small><strong id="financeApprovedCount">0</strong></div></article>
+<article><span class="summary-icon buying"><i class="fa-solid fa-cart-arrow-down"></i></span><div><small>Em compra</small><strong id="financePurchasingCount">0</strong></div></article>
+<article><span class="summary-icon purchase"><i class="fa-solid fa-circle-dollar-to-slot"></i></span><div><small>Compra confirmada</small><strong id="financeConfirmedCount">0</strong></div></article>
+<article><span class="summary-icon complete"><i class="fa-solid fa-box-open"></i></span><div><small>Concluídas</small><strong id="financeCompletedCount">0</strong></div></article>
+</div>
+<article class="panel full-panel finance-requests-panel">
+<div class="panel-header finance-request-header">
+<div><span class="panel-kicker">Financeiro e Administrador</span><h2>Solicitações cadastradas</h2><p>Veja o que foi solicitado e controle todas as etapas da compra.</p></div>
+<div class="finance-request-tools">
+<label class="request-search"><i class="fa-solid fa-magnifying-glass"></i><input id="financeRequestSearch" placeholder="Buscar item ou solicitante..." type="search"/></label>
+<select aria-label="Filtrar solicitações" id="requestStatusFilter"><option value="all">Todos os status</option><option value="Aguardando aprovação">Aguardando aprovação</option><option value="Em análise">Em análise</option><option value="Aprovada">Aprovada</option><option value="Recusada">Recusada</option><option value="Em compra">Em compra</option><option value="Compra confirmada">Compra confirmada</option><option value="Concluída">Concluída</option></select>
+</div>
+</div>
+<div class="request-cards finance-request-cards" id="requestCards"></div>
+</article>
+</div>
+<div class="tab-panel" data-panel="outgoing" role="tabpanel">
+<div class="form-layout">
+<article class="panel form-panel">
+<div class="panel-header"><div><span class="panel-kicker">Movimentação</span><h2>Registrar saída de produto</h2></div><button class="button compact secondary" data-open-tab="scanner" type="button"><i class="fa-solid fa-barcode"></i> Escanear</button></div>
+<form class="smart-form" id="outgoingForm">
+<label class="field span-2"><span>Produto</span><select id="outgoingProduct" required=""><option value="">Selecione um produto</option></select></label>
+<div class="stock-preview span-2" id="outgoingStockPreview"><i class="fa-solid fa-box"></i><span>Selecione um produto para visualizar o saldo.</span></div>
+<label class="field"><span>Quantidade da saída</span><input id="outgoingQuantity" min="1" placeholder="Ex.: 5" required="" type="number"/></label>
+<label class="field"><span>Destino / setor</span><select id="outgoingDestination" required=""><option>Laboratório</option><option>Coleta</option><option>Consultório</option><option>Higienização</option><option>Administrativo</option><option>Manutenção</option></select></label>
+<label class="field"><span>Responsável</span><input id="outgoingResponsible" required="" value="Dr. Gestor"/></label>
+<label class="field"><span>Documento / lote</span><input id="outgoingDocument" placeholder="Ex.: OS-2048"/></label>
+<label class="field span-2"><span>Observação</span><textarea id="outgoingNote" placeholder="Informações adicionais da retirada..." rows="3"></textarea></label>
+<button class="button danger span-2" type="submit"><i class="fa-solid fa-arrow-up-from-bracket"></i> Confirmar saída</button>
+</form>
+</article>
+<article class="panel list-panel">
+<div class="panel-header"><div><span class="panel-kicker">Histórico</span><h2>Últimas saídas</h2></div></div>
+<div class="movement-list" id="outgoingHistory"></div>
+</article>
+</div>
+</div>
+<div class="tab-panel" data-panel="register" role="tabpanel">
+<div class="form-layout register-layout">
+<article class="panel form-panel">
+<div class="panel-header"><div><span class="panel-kicker">Banco de dados</span><h2>Cadastro de produto</h2></div><button class="button compact secondary" data-open-tab="scanner" type="button"><i class="fa-solid fa-barcode"></i> Ler código</button></div>
+<form class="smart-form" id="productForm">
+<input id="productId" type="hidden"/>
+<label class="field span-2"><span>Nome do produto</span><input id="productName" placeholder="Ex.: Tubo de coleta EDTA 4ml" required=""/></label>
+<label class="field"><span>Código de barras</span><div class="input-action"><input id="productBarcode" inputmode="numeric" placeholder="Leia ou digite o código" required=""/><button aria-label="Abrir scanner" data-open-tab="scanner" type="button"><i class="fa-solid fa-barcode"></i></button></div></label>
+<label class="field"><span>Código interno</span><input id="productInternalCode" placeholder="Ex.: LAB-EDTA-04"/></label>
+<label class="field"><span>Categoria</span><select id="productCategory" required=""><option>Laboratório</option><option>Consumíveis</option><option>Reagentes</option><option>Limpeza</option><option>Escritório</option><option>Equipamentos</option><option>Medicamentos</option><option>Outros</option></select></label>
+<label class="field"><span>Unidade de medida</span><select id="productUnit" required=""><option>un.</option><option>cx.</option><option>pct.</option><option>frasco</option><option>litro</option><option>galão</option><option>rolo</option><option>resma</option><option>kit</option></select></label>
+<label class="field"><span>Estoque inicial</span><input id="productStock" min="0" required="" type="number" value="0"/></label>
+<label class="field"><span>Estoque mínimo</span><input id="productMinStock" min="0" required="" type="number" value="10"/></label>
+<label class="field"><span>Fornecedor</span><input id="productSupplier" list="supplierOptions" placeholder="Ex.: Labmed Produtos Ltda."/><datalist id="supplierOptions"></datalist></label>
+<label class="field"><span>Valor unitário</span><input id="productPrice" min="0" placeholder="0,00" step="0.01" type="number"/></label>
+<label class="field"><span>Localização</span><input id="productLocation" placeholder="Ex.: Prateleira A-03"/></label>
+<label class="field"><span>Validade</span><input id="productExpiry" type="date"/></label>
+<label class="field span-2"><span>Descrição</span><textarea id="productDescription" placeholder="Detalhes, marca, lote ou observações..." rows="3"></textarea></label>
+<div class="form-actions span-2"><button class="button secondary" id="clearProductForm" type="button">Limpar</button><button class="button primary" type="submit"><i class="fa-solid fa-database"></i> Salvar no banco</button></div>
+</form>
+</article>
+<article class="panel guide-panel">
+<div class="panel-header"><div><span class="panel-kicker">Cadastro inteligente</span><h2>Como funciona</h2></div></div>
+<ol class="steps-list">
+<li><span>1</span><div><strong>Leia o código</strong><small>Use a câmera do celular ou um leitor USB.</small></div></li>
+<li><span>2</span><div><strong>Complete os dados</strong><small>Informe estoque, mínimo, fornecedor e localização.</small></div></li>
+<li><span>3</span><div><strong>Salve no banco</strong><small>O produto ficará disponível nas entradas, saídas e solicitações.</small></div></li>
+</ol>
+<div class="database-note"><i class="fa-solid fa-database"></i><div><strong>Banco local IndexedDB</strong><span>Os registros permanecem salvos neste navegador e a estrutura está pronta para trocar por uma API futuramente.</span></div></div>
+<div class="last-products"><h3>Últimos cadastrados</h3><div id="lastProducts"></div></div>
+</article>
+</div>
+</div>
+<div class="tab-panel" data-panel="scanner" role="tabpanel">
+<div class="scanner-layout">
+<article class="panel scanner-panel">
+<div class="panel-header"><div><span class="panel-kicker">Leitura automática</span><h2>Scanner de código de barras</h2></div><span class="scanner-support" id="scannerSupport"><i class="fa-solid fa-circle"></i> Verificando câmera</span></div>
+<div class="camera-frame" id="cameraFrame">
+<video id="scannerVideo" muted="" playsinline=""></video>
+<div class="scan-guide"><span></span></div>
+<div class="camera-placeholder" id="cameraPlaceholder"><i class="fa-solid fa-camera"></i><strong>Câmera desligada</strong><span>Clique em “Iniciar câmera” para escanear o produto.</span></div>
+</div>
+<div class="scanner-actions"><button class="button primary" id="startScanner" type="button"><i class="fa-solid fa-camera"></i> Iniciar câmera</button><button class="button secondary" disabled="" id="stopScanner" type="button"><i class="fa-solid fa-stop"></i> Parar</button></div>
+<div class="manual-scan">
+<span>Leitor USB ou código manual</span>
+<div class="manual-scan-row"><input autocomplete="off" id="manualBarcode" inputmode="numeric" placeholder="Digite ou escaneie e pressione Enter"/><button class="button primary" id="manualScanButton" type="button"><i class="fa-solid fa-magnifying-glass"></i> Consultar</button></div>
+<small>Leitores USB funcionam como teclado: mantenha este campo selecionado e leia o código.</small>
+</div>
+</article>
+<article class="panel scan-result-panel">
+<div class="panel-header"><div><span class="panel-kicker">Resultado</span><h2>Produto identificado</h2></div></div>
+<div class="scan-empty" id="scanEmpty"><i class="fa-solid fa-barcode"></i><strong>Aguardando leitura</strong><span>O produto aparecerá aqui após o código ser detectado.</span></div>
+<div class="scan-result hidden" id="scanResult">
+<span class="scan-result-icon"><i class="fa-solid fa-box"></i></span>
+<div class="scan-product-copy"><small id="scanBarcodeLabel">Código</small><h3 id="scanProductName">Produto</h3><p id="scanProductMeta">Categoria • unidade</p></div>
+<div class="scan-stock"><span>Saldo atual</span><strong id="scanProductStock">0</strong></div>
+<label class="field"><span>Quantidade</span><input id="scanQuantity" min="1" type="number" value="1"/></label>
+<label class="field"><span>Responsável / observação</span><input id="scanResponsible" value="Dr. Gestor"/></label>
+<div class="scan-result-actions"><button class="button success" id="scanEntryButton" type="button"><i class="fa-solid fa-arrow-down"></i> Registrar entrada</button><button class="button danger" id="scanExitButton" type="button"><i class="fa-solid fa-arrow-up"></i> Registrar saída</button></div>
+</div>
+<div class="scan-new hidden" id="scanNew">
+<span class="scan-result-icon warning"><i class="fa-solid fa-circle-question"></i></span>
+<h3>Produto ainda não cadastrado</h3>
+<p>O código <strong id="scanUnknownCode"></strong> não existe no banco.</p>
+<button class="button primary" id="registerScannedProduct" type="button"><i class="fa-solid fa-plus"></i> Cadastrar este produto</button>
+</div>
+</article>
+</div>
+</div>
+</section>
+</main>
+<section class="access-denied hidden" id="accessDenied">
+<i class="fa-solid fa-lock"></i>
+<span>Acesso restrito</span>
+<h1>Você não possui permissão para acessar o Almoxarifado.</h1>
+<p>Este módulo está disponível apenas para os perfis Laboratório, Administrador e Financeiro.</p>
+<a class="button primary" href="../home-page/index.html">Voltar para a Home</a>
+</section>
+</div>
+</div>
+<div aria-live="polite" class="toast-stack" id="toastStack"></div>
+<dialog class="request-detail-dialog" id="requestDetailDialog">
+<div class="request-detail-shell">
+<header class="request-detail-header">
+<div><span class="panel-kicker">Análise da solicitação</span><h2 id="detailRequestTitle">Detalhes da solicitação</h2></div>
+<button aria-label="Fechar" class="dialog-close" id="closeRequestDetail" type="button"><i class="fa-solid fa-xmark"></i></button>
+</header>
+<div class="request-detail-status" id="detailRequestStatus"></div>
+<div class="request-detail-grid">
+<div><small>Produto solicitado</small><strong id="detailProduct">—</strong></div>
+<div><small>Tipo do pedido</small><strong id="detailRequestKind">—</strong></div>
+<div><small>Quantidade</small><strong id="detailQuantity">—</strong></div>
+<div><small>Solicitante</small><strong id="detailRequester">—</strong></div>
+<div><small>Setor</small><strong id="detailDepartment">—</strong></div>
+<div><small>Prioridade</small><strong id="detailPriority">—</strong></div>
+<div><small>Data do pedido</small><strong id="detailDate">—</strong></div>
+</div>
+<section class="request-reason-box"><small>Justificativa</small><p id="detailReason">—</p></section>
+<label class="field finance-note-field"><span>Observação do Financeiro / Administrador</span><textarea id="detailFinanceNote" placeholder="Adicione uma observação sobre a análise ou compra..." rows="3"></textarea></label>
+<div class="request-audit" id="detailAudit"></div>
+<footer class="request-detail-actions" id="requestDetailActions">
+<button class="button secondary" data-finance-action="analysis" type="button"><i class="fa-solid fa-magnifying-glass"></i> Em análise</button>
+<button class="button danger" data-finance-action="reject" type="button"><i class="fa-solid fa-xmark"></i> Recusar</button>
+<button class="button success" data-finance-action="approve" type="button"><i class="fa-solid fa-check"></i> Aprovar</button>
+<button class="button primary" data-finance-action="purchase" type="button"><i class="fa-solid fa-cart-arrow-down"></i> Marcar em compra</button>
+<button class="button primary" data-finance-action="confirm" type="button"><i class="fa-solid fa-circle-dollar-to-slot"></i> Confirmar compra</button>
+<button class="button primary" data-finance-action="complete" type="button"><i class="fa-solid fa-box-open"></i> Concluir pedido</button>
+</footer>
+</div>
+</dialog>
+<dialog class="confirm-dialog" id="confirmDialog">
+<form method="dialog">
+<span class="dialog-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+<h2 id="confirmTitle">Confirmar ação</h2>
+<p id="confirmText">Deseja continuar?</p>
+<div><button class="button secondary" value="cancel">Cancelar</button><button class="button danger" id="confirmAccept" value="confirm">Confirmar</button></div>
+</form>
+</dialog>
+<script src="../shared/js/sidebar-config.js?v=20260731-fixed-sections"></script><script src="../shared/js/lag-settings.js?v=20260805-city"></script><script src="js/almoxarifado.js?v=20260805-fix"></script>
+<script src="../shared/js/lag-experience.js?v=20260804-contexto"></script><script src="../controle/js/drive-manifest.js?v=20260804"></script><script src="../shared/js/lag-notifications.js?v=20260804"></script><script src="../shared/js/lag-api-config.js?v=20260804"></script><script src="../shared/js/lag-support.js?v=20260805-ai"></script><script src="../shared/js/lag-global-city.js?v=20260805"></script>
+<script src="../shared/js/lag-topbar-home-standard.js?v=20260805-final"></script><script src="../shared/js/lag-topbar-clean.js?v=20260805"></script>
+</body>
+</html>
