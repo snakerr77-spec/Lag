@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>LAG Controller | Gestão e metas</title>
+  <meta name="description" content="Cadastro, acompanhamento e exportação de metas por cidade no LAG Controller.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="../home-page/css/home.css" rel="stylesheet">
+  <link href="../shared/css/lag-settings.css" rel="stylesheet">
+  <link href="../shared/css/enterprise-modules.css" rel="stylesheet">
+  <link href="../shared/css/lag-experience.css?v=20260804-contexto" rel="stylesheet">
+  <link href="../shared/css/lag-notifications.css?v=20260804" rel="stylesheet">
+  <link href="css/gestao.css?v=20260804-refinado" rel="stylesheet">
+<link href="../shared/css/lag-support.css?v=20260805-ai" rel="stylesheet"/><link href="../shared/css/lag-topbar-center.css?v=20260805" rel="stylesheet"/><link href="../shared/css/lag-global-city.css?v=20260805" rel="stylesheet"/>
+<link href="../shared/css/lag-topbar-home-standard.css?v=20260805-final" rel="stylesheet"/><link href="../shared/css/lag-topbar-clean.css?v=20260805" rel="stylesheet">
+</head>
+<body data-module-id="gestao"><script src="../shared/js/lag-auth-guard.js?v=20260804"></script>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="../home-page/index.html">
+        <span class="brand-badge"><img class="lag-theme-logo" src="../assets/images/logo-lag-badge.png" data-logo-light="../assets/images/logo-lag-badge.png" data-logo-dark="../assets/images/logo-lag-badge.png" alt="LAG Controller"></span>
+        <span class="brand-copy"><strong>LAG Controller</strong><small>Painel executivo clínico</small></span>
+      </a>
+      <nav class="sidebar-nav" aria-label="Navegação principal">
+        <a class="nav-item" data-module-id="home" href="../home-page/index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a class="nav-item active" data-module-id="gestao" href="./index.html"><i class="fa-solid fa-bullseye"></i><span>Gestão e metas</span></a>
+        <a class="nav-item" data-module-id="perfil" href="../perfil/index.html"><i class="fa-solid fa-user-gear"></i><span>Meu perfil</span></a>
+      </nav>
+      <div class="sidebar-status"><span class="status-dot"></span><div><strong>Metas atualizadas</strong><small>Armazenamento local</small></div></div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar goals-topbar">
+        <button class="menu-button" id="menuButton" type="button" aria-label="Abrir ou fechar menu"><i class="fa-solid fa-bars"></i></button>
+<div class="lag-global-unit-context" aria-label="Contexto da unidade">
+          <span>Central operacional</span>
+          <strong>Painel da unidade</strong>
+          <small><i class="fa-solid fa-location-dot"></i> <b data-active-city>Cerquilho</b><i class="context-separator"></i><em data-current-user-role>Administrador</em></small>
+        </div>
+        <label class="global-search"><i class="fa-solid fa-magnifying-glass"></i><input id="goalSearch" placeholder="Buscar indicador..."><kbd>Ctrl K</kbd></label>
+        <div class="topbar-actions">
+          <button class="profile-button" type="button"><span class="profile-avatar" data-current-user-initials>US</span><span><strong data-current-user-name>Usuário</strong><small data-current-user-role>Perfil</small></span><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </header>
+
+      <main class="goals-main">
+        <section class="goals-hero">
+          <div class="goals-hero-copy">
+            <span class="goals-eyebrow"><i class="fa-solid fa-chart-line"></i> Controle mensal</span>
+            <h1>Gestão e metas</h1>
+            <p>Cadastre metas e resultados, acompanhe quanto falta e veja automaticamente quanto precisa ser realizado por dia.</p>
+</div>
+          <div class="goal-score-card">
+            <div class="goal-score-head"><span>Atingimento médio</span><strong id="averagePercent">0%</strong></div>
+            <div class="goal-score-track"><span id="averageProgress"></span></div>
+            <div class="goal-score-foot"><span id="scoreCity">Cerquilho</span><small id="scorePeriod">Período atual</small></div>
+          </div>
+        </section>
+
+        <section class="goals-toolbar" aria-label="Filtros e ações">
+          <div class="toolbar-left">
+            <label class="goal-field"><span>Unidade</span><select id="managementCity"></select></label>
+            <label class="goal-field"><span>Período</span><input id="goalPeriod" type="month"></label>
+            <label class="goal-field"><span>Dias úteis restantes</span><input id="daysRemaining" type="number" min="1" max="31" step="1"></label>
+          </div>
+          <div class="toolbar-center">
+            <div class="view-switch" aria-label="Modo de visualização">
+              <button class="active" data-goal-view="table" type="button"><i class="fa-solid fa-table-list"></i> Tabela</button>
+              <button data-goal-view="chart" type="button"><i class="fa-solid fa-chart-column"></i> Gráfico</button>
+              <button data-goal-view="odontologia" type="button"><i class="fa-solid fa-tooth"></i> Odontologia</button>
+              <button data-goal-view="odontologia-chart" type="button"><i class="fa-solid fa-chart-column"></i> Gráfico Odonto</button>
+            </div>
+          </div>
+          <div class="goal-actions">
+            <button class="btn" id="exportGoalsCsv" type="button"><i class="fa-solid fa-file-csv"></i> Exportar CSV</button>
+            <button class="btn" id="exportGoalsPdf" type="button"><i class="fa-solid fa-file-pdf"></i> Exportar PDF</button>
+            <button class="btn primary" id="newGoal" type="button"><i class="fa-solid fa-plus"></i> Novo indicador</button>
+          </div>
+        </section>
+
+        <section class="goal-summary-grid" aria-label="Resumo das metas">
+          <article class="summary-current"><span class="summary-icon blue"><i class="fa-solid fa-chart-line"></i></span><div><small>Faturamento atual</small><strong id="currentFinancialTotal">R$ 0,00</strong><em id="currentFinancialCaption">resultado do período</em></div></article>
+          <article><span class="summary-icon amber"><i class="fa-solid fa-bullseye"></i></span><div><small>Meta financeira</small><strong id="financialGoal">R$ 0,00</strong><em id="activeIndicatorsCaption">0 indicadores ativos</em></div></article>
+          <article><span class="summary-icon red"><i class="fa-solid fa-triangle-exclamation"></i></span><div><small>Falta financeira</small><strong id="financialMissing">R$ 0,00</strong><em id="lowGoalCaption">nenhum alerta</em></div></article>
+          <article><span class="summary-icon green"><i class="fa-solid fa-circle-check"></i></span><div><small>Indicadores atingidos</small><strong id="achievedIndicators">0</strong><em id="achievedCaption">0% concluídos</em></div></article>
+        </section>
+
+        <section class="goals-panel" id="tableView">
+          <div class="goals-panel-head">
+            <div><span>ACOMPANHAMENTO</span><h2>Metas e resultados</h2><p>Edite os valores diretamente. Falta, porcentagem e necessidade diária são calculadas automaticamente.</p></div>
+            <div class="legend"><span><i class="dot danger"></i> abaixo de 75%</span><span><i class="dot warning"></i> entre 75% e 99%</span><span><i class="dot success"></i> meta atingida</span></div>
+          </div>
+          <div class="goals-table-wrap">
+            <table class="goals-table">
+              <thead><tr><th>Indicador</th><th>Meta</th><th>Resultado</th><th>Falta</th><th>Por dia</th><th>Progresso</th><th aria-label="Ações"></th></tr></thead>
+              <tbody id="goalsTableBody"></tbody>
+              <tfoot id="goalsTableFoot" hidden></tfoot>
+            </table>
+          </div>
+          <div class="goal-empty" id="goalEmpty" hidden><i class="fa-solid fa-bullseye"></i><strong>Nenhum indicador encontrado</strong><span>Crie um indicador ou limpe a busca.</span></div>
+        </section>
+
+        <section class="goals-panel chart-panel" id="chartView" hidden>
+          <div class="goals-panel-head chart-heading">
+            <div><span>VISUALIZAÇÃO</span><h2>Resultado atual x meta</h2><p>Veja o valor atual, a meta, quanto falta e o percentual atingido de cada indicador.</p></div>
+            <div class="chart-legend"><span><i class="result-dot"></i> Resultado atual</span><span><i class="target-dot"></i> Meta definida</span></div>
+          </div>
+          <div class="chart-overview" id="chartOverview"></div>
+          <div class="goal-chart-wrap">
+            <div class="goal-chart-axis" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="goals-chart" id="goalsChart" role="img" aria-label="Comparativo entre resultados e metas"></div>
+          </div>
+          <div class="chart-cards" id="chartCards"></div>
+        </section>
+
+        <section class="goals-panel odontology-panel" id="odontologiaView" hidden>
+          <div class="goals-panel-head">
+            <div><span>ODONTOLOGIA</span><h2>Metas e resultados da odontologia</h2><p>O mesmo modelo de acompanhamento da gestão geral, com edição direta, falta, necessidade diária e progresso.</p></div>
+            <div class="legend"><span><i class="dot danger"></i> abaixo de 75%</span><span><i class="dot warning"></i> entre 75% e 99%</span><span><i class="dot success"></i> meta atingida</span></div>
+          </div>
+          <div class="goals-table-wrap">
+            <table class="goals-table">
+              <thead><tr><th>Indicador</th><th>Meta</th><th>Resultado</th><th>Falta</th><th>Por dia</th><th>Progresso</th><th aria-label="Ações"></th></tr></thead>
+              <tbody id="odontologyGoalsBody"></tbody>
+              <tfoot id="odontologyGoalsFoot" hidden></tfoot>
+            </table>
+          </div>
+          <div class="goal-empty" id="odontologyEmpty" hidden><i class="fa-solid fa-tooth"></i><strong>Nenhum indicador odontológico encontrado</strong><span>Crie um indicador ou limpe a busca.</span></div>
+        </section>
+
+        <section class="goals-panel chart-panel" id="odontologiaChartView" hidden>
+          <div class="goals-panel-head chart-heading">
+            <div><span>ODONTOLOGIA</span><h2>Gráfico de metas odontológicas</h2><p>Comparativo visual entre resultado atual e meta de cada indicador da odontologia.</p></div>
+            <div class="chart-legend"><span><i class="result-dot"></i> Resultado atual</span><span><i class="target-dot"></i> Meta definida</span></div>
+          </div>
+          <div class="chart-overview" id="odontologyChartOverview"></div>
+          <div class="goal-chart-wrap">
+            <div class="goal-chart-axis" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="goals-chart" id="odontologyGoalsChart" role="img" aria-label="Comparativo das metas odontológicas"></div>
+          </div>
+          <div class="chart-cards" id="odontologyChartCards"></div>
+        </section>
+
+        <section class="goals-insight-grid">
+          <article class="goals-panel compact">
+            <div class="goals-panel-head"><div><span>NOTIFICAÇÕES</span><h2>Regras de alerta</h2></div></div>
+            <div class="notification-rule-list">
+              <div><span class="rule-icon danger"><i class="fa-solid fa-triangle-exclamation"></i></span><div><strong>Meta crítica</strong><small>Abaixo de 75%: alerta vermelho para usuários da cidade.</small></div></div>
+              <div><span class="rule-icon warning"><i class="fa-solid fa-bullseye"></i></span><div><strong>Meta abaixo do esperado</strong><small>Entre 75% e 99%: aviso com a porcentagem que ainda falta.</small></div></div>
+              <div><span class="rule-icon success"><i class="fa-solid fa-circle-check"></i></span><div><strong>Meta atingida</strong><small>Ao atingir 100%, o alerta desaparece automaticamente.</small></div></div>
+            </div>
+          </article>
+          <article class="goals-panel compact">
+            <div class="goals-panel-head"><div><span>PRIORIDADE</span><h2>Indicadores que mais precisam avançar</h2></div></div>
+            <div class="priority-list" id="priorityList"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <div class="goal-modal" id="goalModal" hidden>
+    <form class="goal-modal-card" id="goalForm">
+      <header><div><span>NOVO INDICADOR</span><h2 id="goalModalTitle">Adicionar meta</h2><p>Cadastre o indicador e os valores iniciais.</p></div><button type="button" id="closeGoalModal" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button></header>
+      <input type="hidden" id="goalId">
+      <div class="goal-form-grid">
+        <label class="wide"><span>Nome do indicador *</span><input id="goalName" maxlength="90" required placeholder="Ex.: Exames e Procedimentos"></label>
+        <label><span>Tipo de valor</span><select id="goalType"><option value="currency">Moeda (R$)</option><option value="number">Quantidade</option></select></label>
+        <label><span>Acompanhamento</span><select id="goalMode"><option value="goal">Com meta</option><option value="value">Somente valor</option></select></label>
+        <label><span>Destaque</span><select id="goalHighlight"><option value="normal">Indicador comum</option><option value="total">Linha de total</option></select></label>
+        <label id="goalTargetField"><span>Meta *</span><input id="goalTarget" type="number" min="0" step="0.01" required></label>
+        <label><span>Resultado atual</span><input id="goalResult" type="number" min="0" step="0.01" value="0"></label>
+      </div>
+      <footer><button class="btn" id="cancelGoalModal" type="button">Cancelar</button><button class="btn primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Salvar indicador</button></footer>
+    </form>
+  </div>
+
+  <script src="../shared/js/sidebar-config.js"></script>
+  <script src="../shared/js/lag-settings.js?v=20260805-city"></script>
+  <script src="../shared/js/page-shell.js"></script>
+  <script src="js/gestao.js?v=20260806-metodo-antigo"></script>
+  <script src="../shared/js/lag-experience.js?v=20260804-contexto"></script>
+  <script src="../controle/js/drive-manifest.js?v=20260804"></script>
+  <script src="../shared/js/lag-notifications.js?v=20260804-metas"></script>
+<script src="../shared/js/lag-api-config.js?v=20260804"></script><script src="../shared/js/lag-support.js?v=20260805-ai"></script><script src="../shared/js/lag-global-city.js?v=20260805"></script>
+<script src="../shared/js/lag-topbar-home-standard.js?v=20260805-final"></script><script src="../shared/js/lag-topbar-clean.js?v=20260805"></script>
+</body>
+</html>

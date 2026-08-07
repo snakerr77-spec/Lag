@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#ffffff" name="theme-color"/>
+<title>Controladoria | LAG Controller</title>
+<meta content="Central de documentos, termos, valores e procedimentos do LAG Controller." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+<link href="../home-page/css/home.css?v=20260731" rel="stylesheet"/>
+<link href="css/controladoria.css?v=20260731-sidebar" rel="stylesheet"/>
+<link href="../shared/css/lag-settings.css?v=20260731-sidebar-labels-fix" rel="stylesheet"/><link href="../shared/css/legacy-polish.css?v=20260731" rel="stylesheet"/><link href="../shared/css/lag-experience.css?v=20260804-contexto" rel="stylesheet"/><link href="../shared/css/lag-notifications.css?v=20260804" rel="stylesheet"/><link href="css/controladoria-polish.css?v=20260804-temas" rel="stylesheet"/><link href="../shared/css/lag-support.css?v=20260805-ai" rel="stylesheet"/><link href="../shared/css/lag-topbar-center.css?v=20260805" rel="stylesheet"/><link href="../shared/css/lag-global-city.css?v=20260805" rel="stylesheet"/>
+<link href="../shared/css/lag-topbar-home-standard.css?v=20260805-final" rel="stylesheet"/><link href="../shared/css/lag-topbar-clean.css?v=20260805" rel="stylesheet">
+</head>
+<body class="control-redesign" data-module-id="controladoria"><script src="../shared/js/lag-auth-guard.js?v=20260804"></script>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<a class="brand" href="../home-page/index.html"><span class="brand-badge"><img class="lag-theme-logo" src="../assets/images/logo-lag-badge.png" data-logo-light="../assets/images/logo-lag-badge.png" data-logo-dark="../assets/images/logo-lag-badge.png" alt="LAG Controller"/></span><span class="brand-copy"><strong>LAG Controller</strong><small>Painel executivo clínico</small></span></a>
+<nav class="sidebar-nav" aria-label="Navegação principal">
+<a class="nav-item" data-module-id="home" href="../home-page/index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+<a class="nav-item" data-module-id="geral" href="../controle/index.html?view=geral"><i class="fa-solid fa-chart-pie"></i><span>Visão geral</span></a>
+<a class="nav-item" data-module-id="exames" href="../controle/index.html?view=exames"><i class="fa-solid fa-microscope"></i><span>Exames</span></a>
+<a class="nav-item" data-module-id="consultas" href="../controle/index.html?view=consultas"><i class="fa-solid fa-user-doctor"></i><span>Consultas</span></a>
+<a class="nav-item" data-module-id="medicos" href="../medicos-exames/index.html"><i class="fa-solid fa-stethoscope"></i><span>Médicos e exames</span></a>
+<a class="nav-item" data-module-id="laudos" href="../laudos-medicos/index.html"><i class="fa-solid fa-file-medical"></i><span>Laudos médicos</span></a>
+<a class="nav-item" data-module-id="prontuario" href="../prontuario-medico/index.html"><i class="fa-solid fa-notes-medical"></i><span>Prontuário</span></a>
+<a class="nav-item active" data-module-id="controladoria" href="./index.html"><i class="fa-solid fa-folder-tree"></i><span>Controladoria</span></a>
+<a class="nav-item" data-module-id="almoxarifado" href="../almoxarifado/index.html"><i class="fa-solid fa-boxes-stacked"></i><span>Almoxarifado</span></a>
+<a class="nav-item" data-module-id="treinamentos" href="../treinamentos/index.html"><i class="fa-solid fa-graduation-cap"></i><span>Treinamentos</span></a>
+<a class="nav-item" data-module-id="perfil" href="../perfil/index.html"><i class="fa-solid fa-user-gear"></i><span>Meu perfil</span></a>
+</nav>
+<div class="sidebar-status"><span class="status-dot"></span><div><strong>Documentos organizados</strong><small>Separação por cidade</small></div></div>
+</aside>
+<div class="main-area">
+<header class="topbar control-common-topbar">
+<button class="menu-button" id="menuButton" type="button" aria-label="Ocultar menu lateral" aria-expanded="true"><i class="fa-solid fa-bars"></i></button>
+<div class="welcome"><strong data-current-user-name>Dr. Gestor</strong><span>Central de documentos e controladoria</span></div>
+<label class="global-search control-global-search"><i class="fa-solid fa-magnifying-glass"></i><input id="topControlSearch" type="search" placeholder="Pesquisar documentos, cidade ou pasta..."/><kbd>Ctrl K</kbd></label>
+<div class="topbar-actions"><button class="icon-button" id="themeButton" type="button" aria-label="Alterar tema"><i class="fa-solid fa-palette"></i></button><a class="profile-button" href="../perfil/index.html"><span class="profile-avatar" data-current-user-initials>DG</span><span><strong data-current-user-name>Dr. Gestor</strong><small data-current-user-role>Administrador</small></span><i class="fa-solid fa-chevron-right"></i></a></div>
+</header>
+<main class="control-shell">
+<nav aria-label="Caminho da página" class="breadcrumb">
+<a href="../home-page/index.html">Home</a>
+<i aria-hidden="true" class="fa-solid fa-chevron-right"></i>
+<span aria-current="page">Controladoria</span>
+</nav>
+<section aria-labelledby="controlTitle" class="control-hero">
+<div aria-hidden="true" class="hero-decoration"></div>
+<div class="hero-main">
+<div aria-hidden="true" class="hero-mark"><i class="fa-solid fa-folder-tree"></i></div>
+<div class="hero-copy">
+<span class="eyebrow"><i class="fa-solid fa-shield-halved"></i> Central administrativa</span>
+<h1 id="controlTitle">Central de Controladoria</h1>
+<p>Organize documentos internos, termos, tabelas de valores e procedimentos em um único ambiente.</p>
+<div aria-label="Recursos disponíveis" class="hero-pills">
+<span><i class="fa-solid fa-folder-open"></i> Biblioteca organizada</span>
+<span><i class="fa-solid fa-magnifying-glass"></i> Pesquisa instantânea</span>
+<span><i class="fa-solid fa-pen-to-square"></i> Edição rápida</span>
+</div>
+</div>
+</div>
+<aside aria-label="Unidade atual" class="hero-unit-card">
+<div class="unit-icon"><i class="fa-solid fa-location-dot"></i></div>
+<div class="unit-copy">
+<span class="unit-label">Unidade selecionada</span>
+<strong data-user-city="">Cerquilho</strong>
+<p>Os novos documentos usarão esta cidade como padrão.</p>
+</div>
+<label class="unit-select-wrap" for="controlCidadeSelect">
+<span>Trocar unidade</span>
+<select data-city-select="" id="controlCidadeSelect">
+<option value="Embu das Artes">Embu das Artes</option>
+<option value="Itapeva">Itapeva</option>
+<option value="Tatui">Tatuí</option>
+<option value="Cerquilho">Cerquilho</option>
+</select>
+<i aria-hidden="true" class="fa-solid fa-chevron-down"></i>
+</label>
+</aside>
+</section>
+<section aria-label="Indicadores da controladoria" class="stats-grid">
+<article class="stat-card">
+<span class="stat-icon"><i class="fa-regular fa-file-lines"></i></span>
+<div><strong id="statDocs">0</strong><small>Documentos salvos</small></div>
+<span class="stat-trend">Total</span>
+</article>
+<article class="stat-card">
+<span class="stat-icon"><i class="fa-solid fa-folder"></i></span>
+<div><strong id="statFolders">0</strong><small>Pastas ativas</small></div>
+<span class="stat-trend">Organização</span>
+</article>
+<article class="stat-card">
+<span class="stat-icon"><i class="fa-solid fa-file-signature"></i></span>
+<div><strong id="statTerms">0</strong><small>Termos cadastrados</small></div>
+<span class="stat-trend">Documentos</span>
+</article>
+<article class="stat-card">
+<span class="stat-icon"><i class="fa-solid fa-money-check-dollar"></i></span>
+<div><strong id="statValues">0</strong><small>Tabelas de valores</small></div>
+<span class="stat-trend">Financeiro</span>
+</article>
+</section>
+<section aria-label="Gerenciador de documentos" class="workspace">
+<aside class="folders-panel">
+<div class="panel-heading">
+<div>
+<span class="panel-kicker">Navegação</span>
+<h2>Pastas</h2>
+</div>
+<span class="panel-count" id="folderCountBadge">0</span>
+</div>
+<button class="all-documents-card is-active" id="showAllFolders" type="button">
+<span class="folder-icon"><i class="fa-solid fa-layer-group"></i></span>
+<span class="folder-copy">
+<strong>Todos os documentos</strong>
+<small id="allDocumentsCount">0 arquivos</small>
+</span>
+<i aria-hidden="true" class="fa-solid fa-chevron-right folder-arrow"></i>
+</button>
+<div class="folders-grid" id="foldersGrid"></div>
+<div class="storage-card">
+<div class="storage-head">
+<span><i class="fa-solid fa-database"></i></span>
+<div><strong>Backup dos dados</strong><small id="storageStatus">Salvo neste navegador</small></div>
+</div>
+<p>Exporte uma cópia antes de limpar o navegador ou trocar de computador.</p>
+<div class="storage-actions">
+<button id="exportDocuments" type="button"><i class="fa-solid fa-download"></i> Exportar</button>
+<label for="importDocuments"><i class="fa-solid fa-upload"></i> Importar</label>
+<input accept="application/json,.json" hidden="" id="importDocuments" type="file"/>
+</div>
+</div>
+</aside>
+<section class="documents-panel">
+<div class="command-bar">
+<label class="search-box" for="docSearch">
+<i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i>
+<input autocomplete="off" id="docSearch" placeholder="Pesquisar documento, médico, valor, cidade ou tag..." type="search"/>
+<kbd>Ctrl K</kbd>
+</label>
+<div class="toolbar-actions">
+<button class="soft-btn clear-btn" id="clearSearch" title="Limpar pesquisa e filtros" type="button">
+<i class="fa-solid fa-rotate-left"></i><span>Limpar</span>
+</button>
+<button class="primary-btn" id="newDocument" type="button">
+<i class="fa-solid fa-plus"></i><span>Novo documento</span>
+</button>
+</div>
+</div>
+<div aria-label="Filtros de documentos" class="filter-bar">
+<label>
+<span>Tipo</span>
+<select id="typeFilter">
+<option value="">Todos os tipos</option>
+<option value="Documento">Documento</option>
+<option value="Termo">Termo</option>
+<option value="Tabela de valores">Tabela de valores</option>
+<option value="Procedimento">Procedimento</option>
+<option value="Checklist">Checklist</option>
+</select>
+</label>
+<label>
+<span>Cidade</span>
+<select id="cityFilter">
+<option value="">Todas as cidades</option>
+<option value="Embu das Artes">Embu das Artes</option>
+<option value="Itapeva">Itapeva</option>
+<option value="Tatui">Tatuí</option>
+<option value="Cerquilho">Cerquilho</option>
+</select>
+</label>
+<label>
+<span>Ordenar</span>
+<select id="sortDocuments">
+<option value="updated-desc">Mais recentes</option>
+<option value="updated-asc">Mais antigos</option>
+<option value="title-asc">Nome: A–Z</option>
+<option value="title-desc">Nome: Z–A</option>
+</select>
+</label>
+<div aria-label="Modo de visualização" class="view-switch">
+<button aria-label="Visualização em grade" aria-pressed="true" class="is-active" data-view-mode="grid" type="button"><i class="fa-solid fa-grip"></i></button>
+<button aria-label="Visualização em lista" aria-pressed="false" data-view-mode="list" type="button"><i class="fa-solid fa-list"></i></button>
+</div>
+</div>
+<div class="documents-head">
+<div>
+<span id="activeFolderLabel">Todos os arquivos</span>
+<h2>Biblioteca de documentos</h2>
+<p id="documentsSummary">Acesse, revise e atualize os arquivos internos.</p>
+</div>
+<div class="documents-head-meta">
+<small id="resultCount">0 itens</small>
+<span id="lastUpdateLabel">Sem atualizações</span>
+</div>
+</div>
+<div aria-live="polite" class="documents-grid" id="documentsGrid"></div>
+</section>
+</section>
+</main>
+</div>
+</div>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="control-backdrop" hidden="" id="controlBackdrop"></div>
+<aside aria-labelledby="viewerTitle" aria-live="polite" aria-modal="true" class="viewer-panel" hidden="" id="viewerPanel" role="dialog">
+<div aria-hidden="true" class="modal-handle"></div>
+<div class="viewer-content" id="viewerContent">
+<div class="viewer-head">
+<div class="modal-title-wrap">
+<span class="modal-icon"><i class="fa-regular fa-file-lines"></i></span>
+<div>
+<span id="viewerFolder">Pasta</span>
+<h2 id="viewerTitle">Documento</h2>
+</div>
+</div>
+<button aria-label="Fechar visualização" class="icon-btn" id="closeViewer" type="button"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="viewer-meta" id="viewerMeta"></div>
+<article class="viewer-box">
+<h3><i class="fa-regular fa-file-lines"></i> Conteúdo</h3>
+<pre id="viewerText"></pre>
+</article>
+<article class="viewer-note" hidden="" id="viewerNoteWrap">
+<h3><i class="fa-solid fa-thumbtack"></i> Observação interna</h3>
+<p id="viewerNote"></p>
+</article>
+<article class="viewer-attachment" id="viewerAttachment" hidden><span><i class="fa-solid fa-paperclip"></i></span><div><strong id="viewerAttachmentName">Arquivo anexado</strong><small id="viewerAttachmentMeta">PDF</small></div><button class="soft-btn" id="downloadViewedAttachment" type="button"><i class="fa-solid fa-download"></i> Baixar</button></article>
+<div class="viewer-actions">
+<button class="primary-btn" id="editViewedDocument" type="button"><i class="fa-solid fa-pen-to-square"></i> Editar documento</button>
+<button class="soft-btn" id="copyViewedDocument" type="button"><i class="fa-regular fa-copy"></i> Copiar conteúdo</button>
+<button class="soft-btn" id="duplicateViewedDocument" type="button"><i class="fa-solid fa-clone"></i> Duplicar</button>
+</div>
+</div>
+</aside>
+<aside aria-labelledby="editorTitle" aria-modal="true" class="editor-panel" hidden="" id="editorPanel" role="dialog">
+<div aria-hidden="true" class="modal-handle"></div>
+<div class="editor-head">
+<div class="modal-title-wrap">
+<span class="modal-icon"><i class="fa-solid fa-pen-to-square"></i></span>
+<div>
+<span>Editor de documentos</span>
+<h2 id="editorTitle">Novo documento</h2>
+</div>
+</div>
+<div class="editor-head-actions">
+<span class="status-dot" id="saveStatus">Pronto</span>
+<button aria-label="Fechar editor" class="icon-btn" id="closeEditor" type="button"><i class="fa-solid fa-xmark"></i></button>
+</div>
+</div>
+<form class="document-form" id="documentForm" novalidate="">
+<input id="docId" type="hidden"/>
+<section class="form-section">
+<div class="form-section-title">
+<span><i class="fa-regular fa-file-lines"></i></span>
+<div><strong>Informações do documento</strong><small>Defina o nome e a classificação do arquivo.</small></div>
+</div>
+<label class="full-field">
+<span>Nome do documento <b>*</b></span>
+<input id="docTitle" maxlength="120" placeholder="Ex: Termo de responsabilidade da recepção" required="" type="text"/>
+</label>
+<div class="double-field">
+<label>
+<span>Pasta</span>
+<select id="docFolder">
+<option value="Termos de Responsabilidade">Termos de Responsabilidade</option>
+<option value="Valores de Médicos">Valores de Médicos</option>
+<option value="Documentos Administrativos">Documentos Administrativos</option>
+<option value="Modelos e Procedimentos">Modelos e Procedimentos</option>
+<option value="Pendências por Unidade">Pendências por Unidade</option>
+</select>
+</label>
+<label>
+<span>Tipo</span>
+<select id="docType">
+<option value="Documento">Documento</option>
+<option value="Termo">Termo</option>
+<option value="Tabela de valores">Tabela de valores</option>
+<option value="Procedimento">Procedimento</option>
+<option value="Checklist">Checklist</option>
+</select>
+</label>
+</div>
+<div class="double-field">
+<label>
+<span>Cidade vinculada</span>
+<select id="docCity">
+<option value="Todas">Todas</option>
+<option value="Embu das Artes">Embu das Artes</option>
+<option value="Itapeva">Itapeva</option>
+<option value="Tatui">Tatuí</option>
+<option value="Cerquilho">Cerquilho</option>
+</select>
+</label>
+<label>
+<span>Tags para pesquisa</span>
+<input id="docTags" maxlength="180" placeholder="Ex: recepção, médico, valor" type="text"/>
+</label>
+</div>
+<label class="full-field control-file-field">
+<span>Arquivo anexado</span>
+<input id="docAttachment" type="file" accept="application/pdf,.pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg"/>
+<div class="control-file-drop"><i class="fa-solid fa-cloud-arrow-up"></i><div><strong>Selecionar documento</strong><small id="attachmentStatus">PDF, Word, Excel ou imagem</small></div></div>
+<span class="remove-attachment"><input id="removeAttachment" type="checkbox"/> Remover arquivo atual ao salvar</span>
+</label>
+</section>
+<section class="form-section">
+<div class="form-section-title">
+<span><i class="fa-solid fa-align-left"></i></span>
+<div><strong>Conteúdo</strong><small>Inclua regras, valores, orientações ou modelos.</small></div>
+</div>
+<label class="full-field textarea-field">
+<span>Conteúdo editável</span>
+<textarea id="docContent" maxlength="20000" placeholder="Digite o conteúdo do documento aqui..." rows="12"></textarea>
+<small class="character-count" id="contentCounter">0 / 20.000</small>
+</label>
+<label class="full-field textarea-field">
+<span>Observação interna</span>
+<textarea id="docNote" maxlength="1000" placeholder="Ex: Revisar com o financeiro antes de utilizar." rows="4"></textarea>
+<small class="character-count" id="noteCounter">0 / 1.000</small>
+</label>
+</section>
+<div class="editor-footer">
+<div class="editor-tip"><i class="fa-regular fa-circle-check"></i><span>As alterações são salvas neste navegador.</span></div>
+<div class="editor-actions">
+<button class="soft-btn" id="cancelEdit" type="button"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+<button class="soft-btn" id="duplicateDocument" type="button"><i class="fa-regular fa-copy"></i> Duplicar</button>
+<button class="danger-btn" id="deleteDocument" type="button"><i class="fa-solid fa-trash"></i> Excluir</button>
+<button class="primary-btn" type="submit"><i class="fa-solid fa-floppy-disk"></i> Salvar documento</button>
+</div>
+</div>
+</form>
+</aside>
+<div aria-atomic="true" aria-live="polite" class="toast-region" id="toastRegion"></div>
+
+
+<script defer="" src="js/controladoria.js?v=20260731-sidebar"></script>
+<script src="../shared/js/sidebar-config.js?v=20260731-laudos"></script><script src="../shared/js/lag-settings.js?v=20260805-city"></script><script src="../shared/js/lag-experience.js?v=20260804-contexto"></script><script src="../controle/js/drive-manifest.js?v=20260804"></script><script src="../shared/js/lag-notifications.js?v=20260804"></script><script src="../shared/js/lag-api-config.js?v=20260804"></script><script src="../shared/js/lag-support.js?v=20260805-ai"></script><script src="../shared/js/lag-global-city.js?v=20260805"></script>
+<script src="../shared/js/lag-topbar-home-standard.js?v=20260805-final"></script><script src="../shared/js/lag-topbar-clean.js?v=20260805"></script>
+</body>
+</html>
