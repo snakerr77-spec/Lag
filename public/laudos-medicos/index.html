@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html data-theme="light-blue" lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#061426" />
+  <title>LAG Controller | Laudos médicos e imagens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <link href="../home-page/css/home.css?v=20260802" rel="stylesheet" />
+  <link href="../shared/css/lag-settings.css?v=20260802-laudos" rel="stylesheet" />
+  <link href="css/laudos.css?v=20260803-release-fix" rel="stylesheet" />
+<link href="../shared/css/lag-experience.css?v=20260804-contexto" rel="stylesheet"/><link href="../shared/css/lag-notifications.css?v=20260804" rel="stylesheet"/><link href="../shared/css/lag-support.css?v=20260807-livechat" rel="stylesheet"/><link href="../shared/css/lag-topbar-center.css?v=20260805" rel="stylesheet"/><link href="../shared/css/lag-global-city.css?v=20260805" rel="stylesheet"/>
+<link href="../shared/css/lag-topbar-home-standard.css?v=20260805-final" rel="stylesheet"/><link href="../shared/css/lag-topbar-clean.css?v=20260805" rel="stylesheet">
+</head>
+<body data-module-id="laudos"><script src="../shared/js/lag-auth-guard.js?v=20260804"></script>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="../home-page/index.html">
+        <span class="brand-badge"><img src="../assets/images/logo-lag-badge.png" alt="LAG Controller" /></span>
+        <span class="brand-copy"><strong>LAG Controller</strong><small>Painel executivo clínico</small></span>
+      </a>
+      <nav class="sidebar-nav" aria-label="Navegação principal">
+        <a class="nav-item" data-module-id="home" href="../home-page/index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a class="nav-item" data-module-id="geral" href="../controle/index.html?view=geral"><i class="fa-solid fa-chart-pie"></i><span>Visão geral</span></a>
+        <a class="nav-item" data-module-id="exames" href="../controle/index.html?view=exames"><i class="fa-solid fa-microscope"></i><span>Exames</span></a>
+        <a class="nav-item" data-module-id="consultas" href="../controle/index.html?view=consultas"><i class="fa-solid fa-user-doctor"></i><span>Consultas</span></a>
+        <a class="nav-item" data-module-id="medicos" href="../medicos-exames/index.html"><i class="fa-solid fa-stethoscope"></i><span>Médicos e exames</span></a>
+        <a class="nav-item active" data-module-id="laudos" href="./index.html"><i class="fa-solid fa-file-medical"></i><span>Laudos médicos</span></a>
+        <a class="nav-item" data-module-id="prontuario" href="../prontuario-medico/index.html"><i class="fa-solid fa-notes-medical"></i><span>Prontuário</span></a>
+        <a class="nav-item" data-module-id="almoxarifado" href="../almoxarifado/index.html"><i class="fa-solid fa-boxes-stacked"></i><span>Almoxarifado</span></a>
+        <a class="nav-item" data-module-id="controladoria" href="../controladoria/index.html"><i class="fa-solid fa-folder-tree"></i><span>Controladoria</span></a>
+        <a class="nav-item" data-module-id="treinamentos" href="../treinamentos/index.html"><i class="fa-solid fa-graduation-cap"></i><span>Treinamentos</span></a>
+        <a class="nav-item" data-module-id="perfil" href="../perfil/index.html"><i class="fa-solid fa-user-gear"></i><span>Meu perfil</span></a>
+      </nav>
+      <div class="sidebar-status"><span class="status-dot"></span><div><strong>Laudos protegidos</strong><small>Conteúdo isolado por unidade</small></div></div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <button class="menu-button" id="menuButton" type="button" aria-label="Ocultar menu lateral" aria-expanded="true"><i class="fa-solid fa-bars"></i></button>
+        <div class="welcome"><strong data-current-user-name>Dr. Gestor</strong><span>Central de laudos médicos</span></div>
+        <label class="global-search report-search"><i class="fa-solid fa-magnifying-glass"></i><input id="reportSearch" type="search" placeholder="Procurar paciente, médico, exame ou arquivo..." /><kbd>Ctrl K</kbd></label>
+        <div class="topbar-actions">
+          <button class="icon-button" id="themeButton" type="button" aria-label="Alterar tema"><i class="fa-solid fa-palette"></i></button>
+          <a class="profile-button" href="../perfil/index.html"><span class="profile-avatar" data-current-user-initials>DG</span><span><strong data-current-user-name>Dr. Gestor</strong><small data-current-user-role>Administrador</small></span><i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+      </header>
+
+      <main class="reports-page">
+        <section class="reports-hero">
+          <div class="reports-hero-main">
+            <span class="reports-hero-icon"><i class="fa-solid fa-file-waveform"></i></span>
+            <div>
+              <span class="eyebrow">Documentos clínicos</span>
+              <h1>Laudos médicos e imagens</h1>
+              <p>Organize PDFs e imagens de exames por categoria, pasta e cidade. O antigo módulo de Ultrassom agora faz parte desta central.</p>
+              <div class="hero-badges"><span><i class="fa-solid fa-shield-halved"></i> Acesso por cargo</span><span><i class="fa-solid fa-city"></i> Dados por cidade</span><span><i class="fa-solid fa-images"></i> PDFs e imagens</span></div>
+              <div class="reports-hero-actions">
+                <a class="secondary-action" id="openPatientPortal" href="portal-paciente/index.html" target="_blank" rel="noopener"><i class="fa-solid fa-user-shield"></i> Portal do paciente</a>
+                <button class="primary-action" id="copyPatientPortalLink" type="button"><i class="fa-solid fa-link"></i> Copiar link seguro</button>
+              </div>
+            </div>
+          </div>
+          <div class="hero-unit-box" id="unitBox">
+            <span>Unidade vinculada</span>
+            <label><i class="fa-solid fa-location-dot"></i><select id="citySelect" aria-label="Selecionar unidade"></select><i class="fa-solid fa-lock city-lock" id="cityLockIcon" aria-hidden="true"></i></label>
+            <small id="cityAccessText">A unidade é definida pelo usuário conectado.</small>
+          </div>
+        </section>
+
+        <section class="report-stats">
+          <article><span class="stat-icon blue"><i class="fa-solid fa-file-pdf"></i></span><div><strong id="totalReports">0</strong><small>laudos da unidade</small></div></article>
+          <article><span class="stat-icon cyan"><i class="fa-solid fa-layer-group"></i></span><div><strong id="totalCategories">0</strong><small>categorias médicas</small></div></article>
+          <article><span class="stat-icon purple"><i class="fa-solid fa-folder-open"></i></span><div><strong id="totalFolders">0</strong><small>pastas organizadas</small></div></article>
+          <article><span class="stat-icon green"><i class="fa-solid fa-circle-check"></i></span><div><strong id="finalizedReports">0</strong><small>laudos finalizados</small></div></article>
+        </section>
+
+        <section class="category-section">
+          <div class="category-section-head">
+            <div><span class="eyebrow">Especialidades e áreas</span><h2>Categorias médicas</h2><p>Cardiologia, Neurologia e qualquer outra categoria necessária para esta cidade.</p></div>
+            <button class="secondary-action manager-only" id="newCategoryButton" type="button"><i class="fa-solid fa-plus"></i> Criar categoria</button>
+          </div>
+          <div class="category-tabs" id="categoryTabs" role="tablist" aria-label="Categorias médicas"></div>
+        </section>
+
+        <section class="reports-toolbar">
+          <div class="active-category-summary"><span class="active-category-icon" id="activeCategoryIcon"><i class="fa-solid fa-stethoscope"></i></span><div><small>Categoria ativa</small><strong id="activeCategoryToolbar">—</strong></div></div>
+          <div class="toolbar-buttons">
+            <button class="secondary-action manager-only" id="newFolderButton" type="button"><i class="fa-solid fa-folder-plus"></i> Nova pasta</button>
+            <button class="primary-action uploader-only" id="newReportButton" type="button"><i class="fa-solid fa-cloud-arrow-up"></i> Adicionar laudo PDF</button>
+          </div>
+        </section>
+
+        <section class="reports-workspace">
+          <aside class="folder-panel">
+            <div class="panel-head"><div><span class="eyebrow">Organização</span><h2>Pastas</h2></div><span id="folderBadge">0</span></div>
+            <button class="folder-row active" type="button" data-folder-id=""><span><i class="fa-solid fa-layer-group"></i></span><div><strong>Todos os laudos</strong><small>Exibir todos os PDFs da categoria</small></div><b id="allFolderCount">0</b></button>
+            <div id="folderList" class="folder-list"></div>
+            <div class="permission-note"><i class="fa-solid fa-circle-info"></i><p><strong>Gestores</strong> criam categorias, pastas e gerenciam arquivos somente da própria cidade. <strong>Médicos</strong> podem escolher a cidade de destino ao enviar um PDF. Apenas o <strong>Administrador</strong> troca a cidade principal do sistema.</p></div>
+          </aside>
+
+          <section class="reports-panel">
+            <div class="filters-row">
+              <label><span>Status</span><select id="statusFilter"><option value="">Todos</option><option value="rascunho">Rascunho</option><option value="revisao">Em revisão</option><option value="finalizado">Finalizado</option></select></label>
+              <label><span>Médico</span><select id="doctorFilter"><option value="">Todos os médicos</option></select></label>
+              <label><span>Ordenar</span><select id="sortFilter"><option value="date-desc">Mais recentes</option><option value="date-asc">Mais antigos</option><option value="patient-asc">Paciente A–Z</option></select></label>
+              <button id="clearFilters" type="button"><i class="fa-solid fa-rotate-left"></i> Limpar</button>
+            </div>
+            <div class="reports-title"><div><span id="activeFolderName">Todos os laudos</span><h2 id="activeCategoryTitle">Selecione uma categoria</h2><p id="resultSummary">0 laudos encontrados</p></div><div class="city-pill"><i class="fa-solid fa-location-dot"></i><span id="activeCityLabel">Cerquilho</span></div></div>
+            <div id="reportsList" class="reports-list" aria-live="polite"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="modal-backdrop" id="modalBackdrop" hidden></div>
+
+  <section class="report-modal" id="reportModal" hidden aria-modal="true" role="dialog" aria-labelledby="reportModalTitle">
+    <header><div><span class="modal-icon"><i class="fa-solid fa-file-arrow-up"></i></span><div><span>Novo documento clínico</span><h2 id="reportModalTitle">Adicionar laudo PDF</h2></div></div><button type="button" data-close-report><i class="fa-solid fa-xmark"></i></button></header>
+    <form id="reportForm">
+      <input type="hidden" id="reportId" />
+      <div class="form-grid">
+        <label class="wide"><span>Nome do paciente *</span><input id="patientName" required maxlength="120" placeholder="Digite o nome completo" /></label>
+        <label><span>CPF do paciente *</span><input id="patientCpf" maxlength="14" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" required /><small class="field-help">A pontuação é aplicada automaticamente.</small></label>
+        <label><span>Data de nascimento *</span><input id="patientBirthDate" type="date" required /><small class="field-help">Usada com o CPF para liberar o portal do paciente.</small></label>
+        <label><span>Data do exame *</span><input id="examDate" type="date" required /></label>
+        <label><span>Categoria médica *</span><select id="reportCategory" required></select></label>
+        <label><span>Tipo de exame *</span><input id="examType" required maxlength="100" placeholder="Ex.: Ecocardiograma" /></label>
+        <label><span>Médico responsável *</span><input id="doctorName" required maxlength="120" placeholder="Ex.: Dr. Carlos Lima" /></label>
+        <label><span>Cidade de destino *</span><select id="reportCity" required></select><small class="field-help">Médicos podem escolher onde o PDF será arquivado.</small></label>
+        <label><span>Pasta *</span><select id="reportFolder" required></select></label>
+        <label><span>Status</span><select id="reportStatus"><option value="rascunho">Rascunho</option><option value="revisao">Em revisão</option><option value="finalizado">Finalizado</option></select></label>
+        <label class="wide pdf-drop"><span>Arquivo PDF <b id="pdfRequirementMark">*</b></span><input id="reportFile" type="file" accept="application/pdf,.pdf" /><div><i class="fa-solid fa-cloud-arrow-up"></i><span><strong>Selecionar o laudo em PDF</strong><small id="selectedFileName">Máximo recomendado: 15 MB</small></span></div></label>
+        <section class="wide image-upload-section" id="imageUploadSection" hidden>
+          <div class="image-upload-heading"><div><span>Imagens do exame</span><strong>Ultrassom e diagnóstico por imagem</strong><small>JPG, PNG ou WEBP. Até 12 imagens por exame.</small></div><span class="image-count-badge" id="imageCountBadge">0</span></div>
+          <label class="image-drop"><input id="reportImages" type="file" accept="image/jpeg,image/png,image/webp" multiple /><div><i class="fa-solid fa-images"></i><span><strong>Selecionar imagens do exame</strong><small id="selectedImagesName">Nenhuma imagem selecionada</small></span></div></label>
+          <div class="existing-images-list" id="existingImagesList"></div>
+        </section>
+        <label class="wide portal-access-field"><input id="patientVisible" type="checkbox" checked /><span><strong>Disponibilizar no portal do paciente</strong><small>O exame só aparece para o paciente quando o status estiver como Finalizado.</small></span></label>
+        <label class="wide"><span>Observações</span><textarea id="reportNotes" rows="3" maxlength="600" placeholder="Informações internas sobre o documento"></textarea></label>
+      </div>
+      <footer><button class="secondary-action" type="button" data-close-report>Cancelar</button><button class="primary-action" type="submit"><i class="fa-solid fa-floppy-disk"></i> Salvar laudo</button></footer>
+    </form>
+  </section>
+
+  <section class="report-modal folder-modal" id="folderModal" hidden aria-modal="true" role="dialog" aria-labelledby="folderModalTitle">
+    <header><div><span class="modal-icon"><i class="fa-solid fa-folder-plus"></i></span><div><span>Organização da unidade</span><h2 id="folderModalTitle">Nova pasta</h2></div></div><button type="button" data-close-folder><i class="fa-solid fa-xmark"></i></button></header>
+    <form id="folderForm">
+      <div class="form-grid">
+        <label class="wide"><span>Nome da pasta *</span><input id="folderName" required maxlength="100" placeholder="Ex.: Exames de agosto" /></label>
+        <label><span>Categoria médica *</span><select id="folderCategory" required></select></label>
+        <label><span>Cidade *</span><select id="folderCity" required></select></label>
+        <label class="wide"><span>Descrição</span><textarea id="folderDescription" rows="3" maxlength="300" placeholder="Descreva os documentos desta pasta"></textarea></label>
+      </div>
+      <footer><button class="secondary-action" type="button" data-close-folder>Cancelar</button><button class="primary-action" type="submit"><i class="fa-solid fa-folder-plus"></i> Criar pasta</button></footer>
+    </form>
+  </section>
+
+  <section class="report-modal category-modal" id="categoryModal" hidden aria-modal="true" role="dialog" aria-labelledby="categoryModalTitle">
+    <header><div><span class="modal-icon"><i class="fa-solid fa-layer-group"></i></span><div><span>Estrutura dos laudos</span><h2 id="categoryModalTitle">Criar categoria médica</h2></div></div><button type="button" data-close-category><i class="fa-solid fa-xmark"></i></button></header>
+    <form id="categoryForm">
+      <div class="form-grid">
+        <label class="wide"><span>Nome da categoria *</span><input id="categoryName" required maxlength="80" placeholder="Ex.: Cardiologia, Neurologia, Oftalmologia" /></label>
+        <label><span>Ícone</span><select id="categoryIcon"><option value="fa-stethoscope">Estetoscópio</option><option value="fa-heart-pulse">Coração</option><option value="fa-brain">Cérebro</option><option value="fa-eye">Olho</option><option value="fa-lungs">Pulmão</option><option value="fa-bone">Osso</option><option value="fa-tooth">Dente</option><option value="fa-user-doctor">Médico</option><option value="fa-flask-vial">Laboratório</option><option value="fa-images">Imagens / Ultrassom</option></select></label>
+        <label><span>Cidade *</span><select id="categoryCity" required></select></label>
+        <label class="wide"><span>Descrição</span><textarea id="categoryDescription" rows="3" maxlength="260" placeholder="Ex.: Laudos e exames realizados pela equipe de cardiologia"></textarea></label>
+      </div>
+      <footer><button class="secondary-action" type="button" data-close-category>Cancelar</button><button class="primary-action" type="submit"><i class="fa-solid fa-plus"></i> Criar categoria</button></footer>
+    </form>
+  </section>
+
+  <section class="report-modal images-modal" id="imagesModal" hidden aria-modal="true" role="dialog" aria-labelledby="imagesModalTitle">
+    <header><div><span class="modal-icon"><i class="fa-solid fa-images"></i></span><div><span>Diagnóstico por imagem</span><h2 id="imagesModalTitle">Imagens do exame</h2></div></div><button type="button" data-close-images><i class="fa-solid fa-xmark"></i></button></header>
+    <div class="images-viewer-body">
+      <div class="images-viewer-meta" id="imagesViewerMeta"></div>
+      <div class="images-viewer-grid" id="imagesViewerGrid"></div>
+    </div>
+  </section>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <script src="../shared/js/sidebar-config.js?v=20260802"></script>
+  <script src="../shared/js/lag-settings.js?v=20260805-city"></script>
+  <script src="js/laudos.js?v=20260803-release-fix"></script>
+<script src="../shared/js/lag-experience.js?v=20260804-contexto"></script><script src="../controle/js/drive-manifest.js?v=20260804"></script><script src="../shared/js/lag-notifications.js?v=20260804"></script><script src="../shared/js/lag-api-config.js?v=20260804"></script><script src="../shared/js/lag-support.js?v=20260807-livechat"></script><script src="../shared/js/lag-global-city.js?v=20260805"></script>
+<script src="../shared/js/lag-topbar-home-standard.js?v=20260805-final"></script><script src="../shared/js/lag-topbar-clean.js?v=20260805"></script>
+</body>
+</html>
