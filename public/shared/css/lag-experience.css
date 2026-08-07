@@ -1,0 +1,306 @@
+/* LAG Controller — experiência unificada 2026-08-03 */
+:root {
+  --lag-accent: #147cf3;
+  --lag-accent-2: #17b9d6;
+  --lag-accent-soft: rgba(20,124,243,.10);
+}
+
+/* A troca de tema fica exclusivamente no perfil. */
+body:not([data-module-id="perfil"]) #themeButton,
+body:not([data-module-id="perfil"]) .theme-picker,
+body:not([data-module-id="perfil"]) .theme-swatches,
+body:not([data-module-id="perfil"]) [data-theme-picker],
+body:not([data-module-id="perfil"]) [data-theme-option] { display: none !important; }
+
+/* O nome do usuário permanece no cartão do perfil; a saudação não ocupa as outras páginas. */
+body:not([data-module-id="home"]):not([data-module-id="perfil"]) .topbar .welcome { display: none !important; }
+body:not([data-module-id="home"]):not([data-module-id="perfil"]) .topbar {
+  grid-template-columns: auto minmax(260px, 1fr) auto !important;
+}
+body:not([data-module-id="home"]):not([data-module-id="perfil"]) .topbar .global-search,
+body:not([data-module-id="home"]):not([data-module-id="perfil"]) .topbar .control-global-search { grid-column: 2; }
+
+/* Notificações compartilhadas */
+.lag-notification-wrap { position: relative; }
+.lag-notification-button { position: relative; }
+.lag-notification-button.has-alert { color: #d97706 !important; border-color: rgba(217,119,6,.24) !important; background: rgba(255,247,230,.86) !important; }
+.lag-notification-button .lag-notification-count {
+  position: absolute; right: -4px; top: -5px; min-width: 18px; height: 18px; padding: 0 5px;
+  display: grid; place-items: center; border-radius: 999px; border: 2px solid var(--surface, #fff);
+  background: #ef4444; color: #fff; font-size: 9px; font-weight: 900;
+}
+.lag-notification-panel {
+  position: absolute; z-index: 1200; top: calc(100% + 12px); right: 0; width: min(390px, calc(100vw - 30px));
+  padding: 12px; border: 1px solid var(--line, #d9e4ef); border-radius: 18px;
+  background: color-mix(in srgb, var(--surface, #fff) 97%, transparent); box-shadow: 0 24px 60px rgba(10,35,72,.22);
+  backdrop-filter: blur(18px);
+}
+.lag-notification-panel[hidden] { display: none !important; }
+.lag-notification-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 4px 11px; }
+.lag-notification-head div { display: grid; gap: 2px; }
+.lag-notification-head strong { font-size: 13px; }
+.lag-notification-head small { color: var(--muted, #718096); font-size: 10px; }
+.lag-notification-head button { border: 0; background: transparent; color: var(--primary, var(--lag-accent)); font-size: 10px; font-weight: 800; cursor: pointer; }
+.lag-notification-list { display: grid; gap: 8px; }
+.lag-notification-item { display: grid; grid-template-columns: 38px 1fr auto; align-items: center; gap: 10px; padding: 11px; border: 1px solid var(--line, #d9e4ef); border-radius: 14px; background: var(--surface-2, #f7faff); }
+.lag-notification-item > i { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 11px; background: rgba(245,158,11,.14); color: #d97706; }
+.lag-notification-item div { display: grid; gap: 3px; }
+.lag-notification-item strong { font-size: 11px; }
+.lag-notification-item small { color: var(--muted, #718096); font-size: 9px; line-height: 1.45; }
+.lag-notification-item b { color: #d97706; font-size: 11px; }
+.lag-notification-empty { margin: 0; padding: 18px; color: var(--muted, #718096); text-align: center; font-size: 10px; }
+
+/* Alerta de meta persistente na Home */
+.home-goal-alert {
+  display: grid; grid-template-columns: 46px minmax(0,1fr) auto; align-items: center; gap: 14px;
+  margin: 16px 0 18px; padding: 15px 16px; border: 1px solid rgba(245,158,11,.28); border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,250,235,.98), rgba(255,245,214,.90)); color: #7c4a03;
+  box-shadow: 0 18px 40px rgba(140,84,4,.10);
+}
+[data-theme^="dark"] .home-goal-alert { background: linear-gradient(135deg, rgba(74,45,8,.92), rgba(57,36,8,.92)); color: #ffe3a6; }
+.home-goal-alert > span { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 14px; background: rgba(245,158,11,.17); color: #d97706; font-size: 18px; }
+.home-goal-alert div { display: grid; gap: 3px; }
+.home-goal-alert strong { font-size: 12px; }
+.home-goal-alert small { font-size: 10px; line-height: 1.5; opacity: .83; }
+.home-goal-alert button { width: 34px; height: 34px; border: 1px solid currentColor; border-radius: 10px; background: transparent; color: inherit; cursor: pointer; opacity: .7; }
+.home-goal-alert button:hover { opacity: 1; transform: scale(1.04); }
+
+/* Home: feixe de luz atrás do mascote */
+.home-hero-visual { isolation: isolate; }
+.home-light-beam {
+  position: absolute; z-index: 1; left: 50%; top: 50%; width: 520px; height: 135px;
+  transform: translate(-50%,-50%) rotate(-18deg); transform-origin: center;
+  background: linear-gradient(90deg, transparent 0%, rgba(66,165,255,.05) 18%, rgba(71,190,255,.45) 49%, rgba(73,231,225,.12) 72%, transparent 100%);
+  filter: blur(18px); opacity: .78; animation: lagBeamSweep 5.5s ease-in-out infinite alternate; pointer-events: none;
+}
+.home-light-beam.beam-two { width: 430px; height: 75px; transform: translate(-50%,-50%) rotate(22deg); opacity: .46; animation-duration: 7.2s; animation-delay: -2.4s; }
+@keyframes lagBeamSweep {
+  0% { transform: translate(-58%,-56%) rotate(-24deg) scaleX(.82); opacity: .32; }
+  48% { opacity: .86; }
+  100% { transform: translate(-42%,-44%) rotate(18deg) scaleX(1.15); opacity: .58; }
+}
+.home-hero-visual img { z-index: 4 !important; }
+.home-hero-visual .visual-glow, .home-hero-visual .visual-ring { z-index: 2; }
+
+/* Médicos e exames — paleta única e menos ruído */
+body.medical-directory-page {
+  --lag-teal: var(--lag-accent) !important;
+  --lag-teal-dark: #0f67cf !important;
+  --lag-cyan: #45bce8 !important;
+}
+body.medical-directory-page .lag-command { display: none !important; }
+body.medical-directory-page .hero-panel,
+body.medical-directory-page .workspace,
+body.medical-directory-page .doctor-item,
+body.medical-directory-page .detail-card,
+body.medical-directory-page .table-card { border-color: rgba(20,124,243,.18) !important; }
+body.medical-directory-page .page-kicker,
+body.medical-directory-page .section-label { background: rgba(20,124,243,.10) !important; color: #0f67cf !important; }
+body.medical-directory-page .btn-primary,
+body.medical-directory-page .tab.active { background: linear-gradient(135deg,#147cf3,#21b4d7) !important; }
+body.medical-directory-page .detail-head { background: linear-gradient(135deg,#0b2f63,#1268c8) !important; }
+body.medical-directory-page .doctor-item:hover,
+body.medical-directory-page .doctor-item.active { border-color: rgba(20,124,243,.45) !important; }
+body.medical-directory-page .exam-helper-grid { display: none !important; }
+body.medical-directory-page .footer { display: none !important; }
+
+/* Controladoria: biblioteca mais limpa e uniforme */
+body.control-redesign .control-hero {
+  background: linear-gradient(135deg, color-mix(in srgb,var(--surface,#fff) 98%,transparent), rgba(20,124,243,.10)) !important;
+  border-color: rgba(20,124,243,.18) !important;
+}
+body.control-redesign .hero-unit-card { background: linear-gradient(145deg,#0b356b,#0e809b) !important; }
+body.control-redesign .primary-btn,
+body.control-redesign .all-documents-card.is-active { background: linear-gradient(135deg,#147cf3,#18b9d6) !important; }
+body.control-redesign .workspace { gap: 16px !important; }
+body.control-redesign .folders-panel,
+body.control-redesign .documents-panel { border-radius: 20px !important; }
+body.control-redesign .document-card { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+body.control-redesign .document-card:hover { transform: translateY(-3px); box-shadow: 0 18px 42px rgba(10,42,86,.12) !important; border-color: rgba(20,124,243,.35) !important; }
+
+/* Candidatos médicos e prontuário seguem a mesma identidade. */
+.manager-only-note { padding: 10px 12px; border: 1px solid rgba(20,124,243,.18); border-radius: 12px; background: rgba(20,124,243,.07); color: #0f67cf; font-size: 10px; font-weight: 700; }
+
+@media (max-width: 980px) {
+  body:not([data-module-id="home"]):not([data-module-id="perfil"]) .topbar { grid-template-columns: auto minmax(0,1fr) auto !important; }
+  .lag-notification-panel { position: fixed; top: 74px; right: 12px; }
+}
+@media (max-width: 640px) {
+  .home-goal-alert { grid-template-columns: 40px minmax(0,1fr) auto; padding: 12px; }
+  .home-light-beam { width: 370px; }
+}
+body.medical-directory-page .sidebar-brand-mark,
+body.medical-directory-page .support-icon,
+body.medical-directory-page .summary-icon,
+body.medical-directory-page .topbar-avatar { background: #e7f2ff !important; color: #147cf3 !important; }
+body.medical-directory-page .sidebar-brand-mark svg,
+body.medical-directory-page .lag-brand-glyph { fill: #147cf3 !important; }
+body.medical-directory-page .sidebar-link.active,
+body.medical-directory-page .sidebar-link:hover { color: #0f67cf !important; background: #eaf4ff !important; border-color: rgba(20,124,243,.24) !important; }
+body.medical-directory-page .tabs { border-color: rgba(20,124,243,.18) !important; }
+body.medical-directory-page .tab.active { color: #fff !important; }
+body.medical-directory-page .filters-row { border-color: rgba(20,124,243,.18) !important; }
+body.medical-directory-page .field input:focus,
+body.medical-directory-page .field select:focus,
+body.medical-directory-page .field textarea:focus { border-color:#147cf3 !important; box-shadow:0 0 0 3px rgba(20,124,243,.10) !important; }
+
+
+/* Contexto operacional compartilhado em todas as abas internas. */
+.lag-global-unit-context {
+  min-width: 188px;
+  display: grid;
+  gap: 2px;
+  align-content: center;
+  color: var(--text, #0a2447);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.lag-global-unit-context > span {
+  color: var(--primary, #1478ff);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.lag-global-unit-context > strong { font-size: 13px; letter-spacing: -.02em; }
+.lag-global-unit-context > small {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted, #6a7b94);
+  font-size: 9px;
+}
+.lag-global-unit-context small > i:not(.context-separator) { color: var(--primary, #1478ff); }
+.lag-global-unit-context small b,
+.lag-global-unit-context small em { font-style: normal; font-weight: 750; }
+.lag-global-unit-context .context-separator {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--muted, #6a7b94);
+  opacity: .55;
+}
+body.sidebar-hidden .lag-global-unit-context { display: none !important; }
+body.sidebar-hidden:has(.sidebar.open) .lag-global-unit-context,
+body.sidebar-hidden:has(.module-sidebar.open) .lag-global-unit-context { display: grid !important; }
+body:not([data-module-id="home"]):not([data-module-id="perfil"]) .topbar:has(.lag-global-unit-context) {
+  grid-template-columns: auto minmax(188px,.55fr) minmax(260px,1fr) auto !important;
+}
+body:not([data-module-id="home"]):not([data-module-id="perfil"]).sidebar-hidden .topbar:has(.lag-global-unit-context) {
+  grid-template-columns: auto minmax(260px,1fr) auto !important;
+}
+@media (max-width: 1120px) {
+  .lag-global-unit-context { min-width: 160px; }
+  .lag-global-unit-context > small { max-width: 170px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+@media (max-width: 760px) {
+  .lag-global-unit-context { display: none !important; }
+}
+
+body[data-module-id="home"].sidebar-hidden .topbar:has(.lag-global-unit-context) {
+  grid-template-columns: auto auto minmax(260px,1fr) minmax(160px,.45fr) auto !important;
+}
+body[data-module-id="home"]:not(.sidebar-hidden) .topbar:has(.lag-global-unit-context) {
+  grid-template-columns: auto minmax(188px,.55fr) minmax(260px,1fr) minmax(160px,.45fr) auto !important;
+}
+body[data-module-id="perfil"].sidebar-hidden .topbar:has(.lag-global-unit-context) {
+  grid-template-columns: auto minmax(300px,1fr) minmax(180px,.45fr) auto !important;
+}
+body[data-module-id="perfil"]:not(.sidebar-hidden) .topbar:has(.lag-global-unit-context) {
+  grid-template-columns: auto minmax(188px,.55fr) minmax(300px,1fr) minmax(180px,.45fr) auto !important;
+}
+
+
+/* Logo global exibida quando a sidebar está recolhida */
+.lag-collapsed-brand {
+  display: none;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+  color: var(--text, #0a2447);
+  text-decoration: none;
+}
+.lag-collapsed-brand-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line, #dce7f3);
+  border-radius: 13px;
+  background: var(--surface, #fff);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--primary, #1478ff) 12%, transparent);
+}
+.lag-collapsed-brand-mark img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+.lag-collapsed-brand-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.lag-collapsed-brand-copy strong {
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: -.025em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lag-collapsed-brand-copy small {
+  overflow: hidden;
+  color: var(--muted, #6a7b94);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body.sidebar-hidden .lag-collapsed-brand { display: flex; }
+body:not(.sidebar-hidden) .lag-collapsed-brand { display: none; }
+@media (max-width: 980px) {
+  .lag-collapsed-brand { display: flex; }
+  .lag-collapsed-brand-copy { display: none; }
+}
+
+
+/* Controles internos coerentes nos temas claro e escuro */
+html[data-theme^="dark"] body:not([data-module-id="portal-paciente"]) input,
+html[data-theme^="dark"] body:not([data-module-id="portal-paciente"]) select,
+html[data-theme^="dark"] body:not([data-module-id="portal-paciente"]) textarea {
+  color: var(--text, #f3f8ff);
+  border-color: var(--line, #1a3858);
+  background-color: var(--surface-2, #0c223c);
+}
+html[data-theme^="dark"] body:not([data-module-id="portal-paciente"]) input::placeholder,
+html[data-theme^="dark"] body:not([data-module-id="portal-paciente"]) textarea::placeholder {
+  color: color-mix(in srgb, var(--muted, #91a7c2) 78%, transparent);
+}
+html[data-theme^="dark"] body:not([data-module-id="portal-paciente"]) option {
+  color: var(--text, #f3f8ff);
+  background: var(--surface, #0a1d34);
+}
+
+body:not([data-module-id="home"]):not([data-module-id="perfil"]).sidebar-hidden .topbar:has(.lag-collapsed-brand),
+body:not([data-module-id="home"]):not([data-module-id="perfil"]).sidebar-hidden .module-topbar:has(.lag-collapsed-brand) {
+  grid-template-columns: auto auto minmax(260px, 1fr) auto !important;
+}
+
+body[data-module-id="perfil"]:not(.sidebar-hidden) .topbar:has(.lag-global-unit-context) {
+  grid-template-columns: auto minmax(188px,.55fr) minmax(300px,1fr) minmax(180px,.45fr) auto !important;
+}
+body[data-module-id="perfil"].sidebar-hidden .topbar:has(.lag-collapsed-brand) {
+  grid-template-columns: auto auto minmax(300px,1fr) minmax(180px,.45fr) auto !important;
+}
+
+
+/* 2026-08-06 static logo and hidden sidebar scrollbar globally */
+.sidebar .brand-badge{background:transparent!important;box-shadow:none!important}
+.sidebar .brand img{animation:none!important;transform:none!important}
+.sidebar .sidebar-nav{-ms-overflow-style:none;scrollbar-width:none}.sidebar .sidebar-nav::-webkit-scrollbar{display:none!important;width:0;height:0}
+
+
+/* 2026-08-06 v4 — logos consistentes em todos os módulos */
+.sidebar .brand-badge{background:transparent!important;border-color:color-mix(in srgb,var(--primary) 24%,transparent)!important;box-shadow:none!important}
+.sidebar .brand img,.topbar-brand img,.lag-standard-topbar-brand img,.lag-collapsed-brand-mark img{width:44px!important;height:44px!important;object-fit:contain!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;filter:drop-shadow(0 8px 18px color-mix(in srgb,var(--primary) 18%,transparent))!important;animation:none!important;transform:none!important}
+.sidebar .sidebar-nav{scrollbar-width:none;-ms-overflow-style:none}.sidebar .sidebar-nav::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}

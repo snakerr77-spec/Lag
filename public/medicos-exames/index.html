@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html data-theme="light-blue" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Médicos e Exames | LAG Controller</title>
+<meta content="#ffffff" name="theme-color"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+<link href="css/medicos-exames.css?v=20260729-fullnav1" rel="stylesheet"/>
+<link href="css/shell-padrao.css?v=20260804-exato" rel="stylesheet"/><link href="../shared/css/lag-settings.css?v=20260731-sidebar-labels-fix" rel="stylesheet"/><link href="../shared/css/legacy-polish.css?v=20260731" rel="stylesheet"/><link href="../shared/css/lag-experience.css?v=20260804-contexto" rel="stylesheet"/><link href="../shared/css/lag-notifications.css?v=20260804" rel="stylesheet"/><link href="css/medical-polish.css?v=20260804-completo" rel="stylesheet"/><link href="../shared/css/lag-support.css?v=20260807-livechat" rel="stylesheet"/><link href="../shared/css/lag-topbar-center.css?v=20260805" rel="stylesheet"/><link href="../shared/css/lag-global-city.css?v=20260805" rel="stylesheet"/>
+<link href="../shared/css/lag-topbar-home-standard.css?v=20260805-final" rel="stylesheet"/><link href="../shared/css/lag-topbar-clean.css?v=20260805" rel="stylesheet">
+</head>
+<body class="medical-directory-page" data-module-id="medicos" id="topo"><script src="../shared/js/lag-auth-guard.js?v=20260804"></script>
+<div aria-hidden="true" class="lag-bg"><span></span><span></span><span></span></div>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<a aria-label="Voltar para a página inicial" class="brand" href="../home-page/index.html">
+<span class="brand-badge"><img alt="LAG Controller" src="../assets/images/logo-lag-badge.png"/></span>
+<span class="brand-copy"><strong>LAG Controller</strong><small>Painel executivo clínico</small></span>
+</a>
+<nav aria-label="Navegação principal" class="sidebar-nav">
+<a class="nav-item" data-module-id="home" href="../home-page/index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+<a class="nav-item" data-module-id="geral" href="../controle/index.html?view=geral"><i class="fa-solid fa-chart-pie"></i><span>Visão geral</span></a>
+<a class="nav-item" data-module-id="exames" href="../controle/index.html?view=exames"><i class="fa-solid fa-microscope"></i><span>Exames</span></a>
+<a class="nav-item" data-module-id="consultas" href="../controle/index.html?view=consultas"><i class="fa-solid fa-user-doctor"></i><span>Consultas</span></a>
+<a class="nav-item active" data-module-id="medicos" href="./index.html"><i class="fa-solid fa-stethoscope"></i><span>Médicos e exames</span></a>
+<a class="nav-item" data-module-id="candidatos" href="../contratacao-medicos/index.html"><i class="fa-solid fa-user-doctor"></i><span>Candidatos médicos</span></a>
+<a class="nav-item" data-module-id="laudos" href="../laudos-medicos/index.html"><i class="fa-solid fa-file-medical"></i><span>Laudos médicos</span></a>
+<a class="nav-item" data-module-id="prontuario" href="../prontuario-medico/index.html"><i class="fa-solid fa-notes-medical"></i><span>Prontuário</span></a>
+<a class="nav-item" data-module-id="almoxarifado" href="../almoxarifado/index.html"><i class="fa-solid fa-boxes-stacked"></i><span>Almoxarifado</span></a>
+<a class="nav-item" data-module-id="parceiros" href="../parceiros/index.html"><i class="fa-solid fa-handshake"></i><span>Parceiros</span></a>
+<a class="nav-item" data-module-id="gestao" href="../gestao/index.html"><i class="fa-solid fa-bullseye"></i><span>Gestão e metas</span></a>
+<a class="nav-item" data-module-id="controladoria" href="../controladoria/index.html"><i class="fa-solid fa-folder-tree"></i><span>Controladoria</span></a>
+<a class="nav-item" data-module-id="odontologia" href="../odontologia/index.html"><i class="fa-solid fa-tooth"></i><span>Odontologia</span></a>
+<a class="nav-item" data-module-id="financeiro" href="../financeiro/index.html"><i class="fa-solid fa-chart-line"></i><span>Financeiro / DRE</span></a>
+<a class="nav-item" data-module-id="treinamentos" href="../treinamentos/index.html"><i class="fa-solid fa-graduation-cap"></i><span>Treinamentos</span></a>
+<a class="nav-item" data-module-id="perfil" href="../perfil/index.html"><i class="fa-solid fa-user-gear"></i><span>Meu perfil</span></a>
+</nav>
+<div class="sidebar-status"><span class="status-dot"></span><div><strong>Calendário Medicina</strong><small>Agosto de 2026</small></div></div>
+</aside>
+<div class="main-area">
+<header class="topbar">
+<button aria-expanded="true" aria-label="Mostrar ou ocultar menu lateral" class="menu-button" id="menuButton" type="button"><i class="fa-solid fa-bars"></i></button>
+<div class="lag-global-unit-context" aria-label="Contexto da unidade"><span>Central clínica</span><strong>Médicos e exames</strong><small><i class="fa-solid fa-location-dot"></i> <b data-active-city>Cerquilho</b><i class="context-separator"></i><em data-current-user-role>Administrador</em></small></div>
+<label class="global-search"><i class="fa-solid fa-magnifying-glass"></i><input autocomplete="off" id="moduleGlobalSearch" placeholder="Buscar médico, exame, CRM ou especialidade..." type="search"/><kbd>Ctrl K</kbd></label>
+<div class="topbar-actions"><a class="profile-button" href="../perfil/index.html"><span class="profile-avatar" data-current-user-initials>DG</span><span><strong data-current-user-name>Dr. Gestor</strong><small data-current-user-role>Administrador</small></span><i class="fa-solid fa-chevron-right"></i></a></div>
+</header>
+<main class="page">
+<nav aria-label="Caminho da página" class="lag-breadcrumb">
+<a href="../home-page/index.html">Home</a>
+<i aria-hidden="true" class="fa-solid fa-chevron-right"></i>
+<span aria-current="page">Médicos e exames</span>
+</nav>
+<section class="hero-panel reveal-on-scroll">
+<div class="hero-copy">
+<span class="page-kicker"><i class="fa-solid fa-stethoscope"></i> Operação clínica</span>
+<h1>Médicos e exames</h1>
+<p>
+          Central operacional com médicos e dias de atendimento lidos da planilha Calendário Medicina, além dos exames, preparos, prazos e orientações da unidade.
+        </p>
+<div class="hero-actions medical-quick-actions">
+<button class="btn btn-primary" id="btnNovoMedicoHero" type="button"><i class="fa-solid fa-user-doctor"></i> Novo médico</button>
+<button class="btn btn-light" id="btnNovoExameHero" type="button"><i class="fa-solid fa-vial-circle-plus"></i> Novo exame</button>
+<button class="btn btn-light" id="btnNovoHorario" type="button"><i class="fa-solid fa-calendar-plus"></i> Adicionar horário</button>
+<button class="btn btn-light sheet-sync-button" id="btnSincronizarPlanilha" type="button"><i class="fa-solid fa-rotate"></i> Atualizar planilha</button>
+</div>
+<div class="sheet-source-bar"><span id="sheetSyncStatus">Agosto 2026 importado da planilha</span><a href="https://docs.google.com/spreadsheets/d/1m_EyxyiAYRMocbkxeMMQO7z2TMquCS4I3T3y0VeH6MY/edit?usp=sharing" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir planilha</a></div>
+</div>
+<div aria-label="Resumo do painel" class="summary-strip">
+<article>
+<span class="summary-icon"><i class="fa-solid fa-user-doctor"></i></span>
+<small>Médicos</small>
+<strong id="resumoMedicos">0</strong>
+</article>
+<article>
+<span class="summary-icon"><i class="fa-regular fa-clock"></i></span>
+<small>Agendas</small>
+<strong id="resumoHorarios">0</strong>
+</article>
+<article>
+<span class="summary-icon"><i class="fa-solid fa-vials"></i></span>
+<small>Exames</small>
+<strong id="resumoExames">0</strong>
+</article>
+<article class="warning-card">
+<span class="summary-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+<small>Com jejum</small>
+<strong id="resumoJejum">0</strong>
+</article>
+</div>
+</section>
+<section aria-label="Atalhos operacionais" class="lag-command reveal-on-scroll">
+<article>
+<b>Busca inteligente</b>
+<span>Pesquisa por nome, especialidade, dia de atendimento, CRM, preparo e prazo.</span>
+</article>
+<article>
+<b>Recepção sem ruído</b>
+<span>Jejum e preparo ficam destacados para orientar o paciente com precisão.</span>
+</article>
+<article>
+<b>Agenda clara</b>
+<span>Os médicos aparecem com especialidade, dias e datas de atendimento lidos da planilha.</span>
+</article>
+</section>
+<section class="workspace reveal-on-scroll">
+<div aria-label="Separar médicos e exames" class="tabs" role="tablist">
+<button aria-selected="true" class="tab active" data-tab="medicos" role="tab" type="button">
+<span><i class="fa-solid fa-user-doctor"></i></span> Médicos
+        </button>
+<button aria-selected="false" class="tab" data-tab="exames" role="tab" type="button">
+<span><i class="fa-solid fa-vials"></i></span> Exames
+        </button>
+</div>
+<section class="tab-panel active" id="medicos" role="tabpanel">
+<div class="section-bar">
+<div>
+<span class="section-label">Sistema de médicos</span>
+<h2>Cadastro e horários disponíveis</h2>
+<p>Selecione um profissional para visualizar a especialidade, os dias e as datas de atendimento registradas na planilha.</p>
+</div>
+<div class="actions">
+<button class="btn btn-light" id="btnLimparFiltroMedicos" type="button"><i class="fa-solid fa-rotate-left"></i> Limpar filtros</button>
+<button class="btn btn-primary" id="btnNovoMedico" type="button"><i class="fa-solid fa-plus"></i> Novo médico</button>
+</div>
+</div>
+<div class="filters-row">
+<label class="field search-field">
+<span>Buscar médico</span>
+<input autocomplete="off" id="buscaMedico" placeholder="Nome, especialidade, CRM ou sala" type="search"/>
+</label>
+<label class="field">
+<span>Especialidade</span>
+<select id="filtroEspecialidade"><option value="">Todas</option></select>
+</label>
+<label class="field">
+<span>Dia</span>
+<select id="filtroDia">
+<option value="">Todos os dias</option>
+<option>Segunda</option>
+<option>Terça</option>
+<option>Quarta</option>
+<option>Quinta</option>
+<option>Sexta</option>
+<option>Sábado</option>
+<option>Domingo</option>
+</select>
+</label>
+</div>
+<div class="doctor-area">
+<div aria-live="polite" class="doctor-list" id="listaMedicos"></div>
+<aside class="detail-card" id="detalheMedico">
+<div class="empty-detail">
+<strong>Selecione um médico</strong>
+<span>Os horários disponíveis aparecem aqui.</span>
+</div>
+</aside>
+</div>
+<div class="empty-state" id="semResultadoMedicos">Nenhum médico encontrado com esse filtro.</div>
+</section>
+<section class="tab-panel" id="exames" role="tabpanel">
+<div class="section-bar">
+<div>
+<span class="section-label">Central de exames</span>
+<h2>Exames, valores, preparo e jejum</h2>
+<p>Informações separadas para a equipe orientar o paciente sem confusão.</p>
+</div>
+<div class="actions">
+<button class="btn btn-light" id="btnLimparFiltroExames" type="button"><i class="fa-solid fa-rotate-left"></i> Limpar filtros</button>
+<button class="btn btn-primary" id="btnNovoExame" type="button"><i class="fa-solid fa-plus"></i> Novo exame</button>
+</div>
+</div>
+<div class="exam-helper-grid">
+<article>
+<b>Jejum destacado</b>
+<span>O que exige jejum aparece em alerta, sem caça-palavras na tela.</span>
+</article>
+<article>
+<b>Preparo separado</b>
+<span>Orientação do paciente em um campo limpo e fácil de ler.</span>
+</article>
+<article>
+<b>Prazo visível</b>
+<span>Resultado, valor e observação ficam cada um no próprio lugar.</span>
+</article>
+</div>
+<div class="filters-row exames-filters">
+<label class="field search-field">
+<span>Buscar exame</span>
+<input autocomplete="off" id="buscaExame" placeholder="Hemograma, glicemia, ultrassom" type="search"/>
+</label>
+<label class="field">
+<span>Jejum</span>
+<select id="filtroJejum">
+<option value="">Todos</option>
+<option value="sim">Precisa de jejum</option>
+<option value="nao">Não precisa de jejum</option>
+</select>
+</label>
+<label class="field">
+<span>Categoria</span>
+<select id="filtroCategoria"><option value="">Todas</option></select>
+</label>
+</div>
+<div class="table-card">
+<table class="data-table" id="tabelaExames">
+<thead>
+<tr>
+<th>Exame</th>
+<th>Categoria</th>
+<th>Cidade / médico</th>
+<th>Status</th>
+<th>Valor</th>
+<th>Jejum</th>
+<th>Preparo</th>
+<th>Prazo</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+<div class="empty-state" id="semResultadoExames">Nenhum exame encontrado com esse filtro.</div>
+</section>
+</section>
+</main><footer class="footer">© 2026 LAG Controller | Painel interno de médicos e exames</footer><div aria-hidden="true" class="modal-overlay" id="modalMedicoOverlay">
+<div aria-labelledby="tituloModalMedico" aria-modal="true" class="modal" role="dialog">
+<div class="modal-head">
+<div>
+<span class="section-label">Cadastro médico</span>
+<h3 id="tituloModalMedico">Novo médico</h3>
+</div>
+<button aria-label="Fechar" class="modal-close" id="fecharModalMedicoBtn" type="button">×</button>
+</div>
+<form class="modal-body" id="formMedico">
+<input id="medicoId" type="hidden"/>
+<div class="form-grid">
+<label class="field"><span>Nome do médico</span><input id="medicoNome" placeholder="Ex.: Dra. Ana Souza" required=""/></label>
+<label class="field"><span>Especialidade</span><input id="medicoEspecialidade" placeholder="Ex.: Cardiologia" required=""/></label>
+<label class="field"><span>CRM</span><input id="medicoCrm" placeholder="Ex.: CRM 000000"/></label>
+<label class="field"><span>Cidade</span><select id="medicoCidade"><option>Cerquilho</option><option>Tatuí</option><option>Embu das Artes</option><option>Itapeva</option></select></label>
+<label class="field"><span>Telefone</span><input id="medicoTelefone" placeholder="(15) 99999-9999"/></label>
+<label class="field"><span>E-mail</span><input id="medicoEmail" type="email" placeholder="medico@exemplo.com"/></label>
+<label class="field"><span>Unidade / sala</span><input id="medicoUnidade" placeholder="Ex.: Sala 2"/></label>
+<label class="field"><span>Idade atendida</span><input id="medicoIdade" placeholder="Livre, adulto, acima de 6 anos" required=""/></label>
+<label class="field"><span>Valor da consulta</span><input id="medicoValor" placeholder="Ex.: R$ 35,00"/></label>
+<label class="field"><span>Duração média</span><input id="medicoDuracao" placeholder="Ex.: 30 minutos"/></label>
+<label class="field"><span>Status</span><select id="medicoStatus"><option>Atendendo</option><option>Horário limitado</option><option>Sem agenda aberta</option></select></label>
+<label class="field field-full"><span>Observação interna</span><textarea id="medicoObservacao" placeholder="Informação útil para recepção"></textarea></label>
+<label class="field field-full">
+<span>Horários disponíveis</span>
+<textarea id="medicoHorarios" placeholder="Segunda | 08:00 | 12:00 | Sala 1 | Consulta | 6 vagas
+Quarta | 13:00 | 17:00 | Sala 1 | Retorno | 4 vagas"></textarea>
+<small>Use uma linha por horário no formato: Dia | início | fim | sala | tipo | vagas</small>
+</label>
+</div>
+<div class="modal-actions">
+<button class="btn btn-light" id="cancelarModalMedico" type="button">Cancelar</button>
+<button class="btn btn-primary" type="submit">Salvar médico</button>
+</div>
+</form>
+</div>
+</div><div aria-hidden="true" class="modal-overlay" id="modalExameOverlay">
+<div aria-labelledby="tituloModalExame" aria-modal="true" class="modal" role="dialog">
+<div class="modal-head">
+<div>
+<span class="section-label">Cadastro de exame</span>
+<h3 id="tituloModalExame">Novo exame</h3>
+</div>
+<button aria-label="Fechar" class="modal-close" id="fecharModalExameBtn" type="button">×</button>
+</div>
+<form class="modal-body" id="formExame">
+<input id="exameId" type="hidden"/>
+<div class="form-grid">
+<label class="field"><span>Nome do exame</span><input id="exameNome" placeholder="Ex.: Hemograma completo" required=""/></label>
+<label class="field"><span>Código interno</span><input id="exameCodigo" placeholder="Ex.: EXA-001"/></label>
+<label class="field"><span>Categoria</span><input id="exameCategoria" placeholder="Laboratorial, imagem, cardiologia" required=""/></label>
+<label class="field"><span>Valor</span><input id="exameValor" placeholder="Ex.: R$ 40,00" required=""/></label>
+<label class="field"><span>Cidade</span><select id="exameCidade"><option>Cerquilho</option><option>Tatuí</option><option>Embu das Artes</option><option>Itapeva</option></select></label>
+<label class="field"><span>Médico responsável</span><input id="exameMedico" placeholder="Ex.: Dr. Yanquell"/></label>
+<label class="field"><span>Status</span><select id="exameStatus"><option>Disponível</option><option>Agenda limitada</option><option>Indisponível</option></select></label>
+<label class="field"><span>Precisa de jejum?</span><select id="exameJejum"><option value="nao">Não</option><option value="sim">Sim</option></select></label>
+<label class="field"><span>Tempo de jejum</span><input id="exameJejumHoras" placeholder="Não precisa ou 8 horas"/></label>
+<label class="field"><span>Prazo de resultado</span><input id="examePrazo" placeholder="Ex.: 24 horas" required=""/></label>
+<label class="field field-full"><span>Preparo</span><textarea id="examePreparo" placeholder="Digite o preparo do paciente" required=""></textarea></label>
+<label class="field field-full"><span>Observação interna</span><textarea id="exameObservacao" placeholder="Informações adicionais"></textarea></label>
+</div>
+<div class="modal-actions">
+<button class="btn btn-light" id="cancelarModalExame" type="button">Cancelar</button>
+<button class="btn btn-primary" type="submit">Salvar exame</button>
+</div>
+</form>
+</div>
+</div><div aria-hidden="true" class="modal-overlay" id="modalHorarioOverlay">
+<div aria-labelledby="tituloModalHorario" aria-modal="true" class="modal" role="dialog">
+<div class="modal-head"><div><span class="section-label">Agenda médica</span><h3 id="tituloModalHorario">Adicionar horário</h3></div><button aria-label="Fechar" class="modal-close" id="fecharModalHorarioBtn" type="button">×</button></div>
+<form class="modal-body" id="formHorario">
+<div class="form-grid">
+<label class="field field-full"><span>Médico</span><select id="horarioMedico" required></select></label>
+<label class="field"><span>Dia</span><select id="horarioDia"><option>Segunda</option><option>Terça</option><option>Quarta</option><option>Quinta</option><option>Sexta</option><option>Sábado</option><option>Domingo</option></select></label>
+<label class="field"><span>Tipo</span><select id="horarioTipo"><option>Consulta</option><option>Retorno</option><option>Procedimento</option><option>Telemedicina</option></select></label>
+<label class="field"><span>Início</span><input id="horarioInicio" type="time" required></label>
+<label class="field"><span>Fim</span><input id="horarioFim" type="time" required></label>
+<label class="field"><span>Sala</span><input id="horarioSala" placeholder="Ex.: Sala 2"></label>
+<label class="field"><span>Vagas</span><input id="horarioVagas" type="number" min="1" value="1"></label>
+</div>
+<div class="modal-actions"><button class="btn btn-light" id="cancelarModalHorario" type="button">Cancelar</button><button class="btn btn-primary" type="submit"><i class="fa-solid fa-calendar-check"></i> Salvar horário</button></div>
+</form></div></div><div class="toast" id="toast"></div><button aria-label="Voltar ao topo" class="back-top" id="pageBackTop" type="button">↑</button><script src="js/medicos-planilha-agosto-2026.js?v=20260806"></script><script src="js/medicos-exames.js?v=20260806-planilha"></script></div></div><button aria-label="Fechar menu" class="sidebar-overlay" id="sidebarOverlay" type="button"></button><script src="js/medicos-exames-sidebar.js?v=20260804-padrao"></script><script src="../shared/js/sidebar-config.js?v=20260731"></script><script src="../shared/js/lag-settings.js?v=20260805-city"></script><script src="../shared/js/lag-experience.js?v=20260804-contexto"></script><script src="../controle/js/drive-manifest.js?v=20260804"></script><script src="../shared/js/lag-notifications.js?v=20260804"></script><script src="../shared/js/lag-api-config.js?v=20260804"></script><script src="../shared/js/lag-support.js?v=20260807-livechat"></script><script src="../shared/js/lag-global-city.js?v=20260805"></script>
+<script src="../shared/js/lag-topbar-home-standard.js?v=20260805-final"></script><script src="../shared/js/lag-topbar-clean.js?v=20260805"></script>
+</body>
+</html>
