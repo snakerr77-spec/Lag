@@ -1,6 +1,0 @@
-Odontograma anatômico SVG
-
-- Cada número FDI possui um SVG vetorizado próprio.
-- Os formatos foram extraídos da referência anatômica fornecida.
-- O preenchimento e o traçado são controlados por CSS conforme o status clínico.
-- A seleção múltipla e a lógica já existente foram preservadas.
