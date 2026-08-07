@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html data-theme="light-blue" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#061426" name="theme-color"/>
+<title>LAG Controller | Controle</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="css/controle.css?v=20260731" rel="stylesheet"/><link href="../shared/css/lag-settings.css?v=20260731-sidebar-labels-fix" rel="stylesheet"/>
+<link href="../shared/css/lag-experience.css?v=20260804-contexto" rel="stylesheet"/><link href="../shared/css/lag-notifications.css?v=20260804" rel="stylesheet"/><link href="../shared/css/lag-support.css?v=20260807-livechat" rel="stylesheet"/><link href="../shared/css/lag-topbar-center.css?v=20260805" rel="stylesheet"/><link href="../shared/css/lag-global-city.css?v=20260805" rel="stylesheet"/>
+<link href="../shared/css/lag-topbar-home-standard.css?v=20260805-final" rel="stylesheet"/><link href="../shared/css/lag-topbar-clean.css?v=20260805" rel="stylesheet">
+</head>
+<body class="sidebar-hidden" data-module-id="geral"><script src="../shared/js/lag-auth-guard.js?v=20260804"></script>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<a aria-label="Voltar para a página inicial" class="brand" href="../home-page/index.html">
+<span class="brand-badge">
+<img alt="LAG Controller" class="lag-theme-logo" src="../assets/images/logo-lag-badge.png" data-logo-light="../assets/images/logo-lag-badge.png" data-logo-dark="../assets/images/logo-lag-badge.png"/>
+</span>
+<span class="brand-copy">
+<strong>LAG Controller</strong>
+<small>Painel executivo clínico</small>
+</span>
+</a>
+<nav aria-label="Navegação do dashboard" class="sidebar-nav">
+<a class="nav-item" data-module-id="home" href="../home-page/index.html" title="Home">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+</a>
+<button class="nav-item" data-module-id="geral" data-section="geral" title="Visão geral" type="button">
+<i class="fa-solid fa-chart-pie"></i>
+<span>Visão geral</span>
+</button>
+<button class="nav-item" data-module-id="exames" data-section="exames" type="button">
+<i class="fa-solid fa-microscope"></i>
+<span>Exames</span>
+</button>
+<button class="nav-item" data-module-id="consultas" data-section="consultas" type="button">
+<i class="fa-solid fa-user-doctor"></i>
+<span>Consultas</span>
+</button>
+<div class="nav-divider"></div>
+<a class="nav-item" data-module-id="medicos" href="../medicos-exames/index.html">
+<i class="fa-solid fa-stethoscope"></i>
+<span>Médicos e exames</span>
+</a>
+<a class="nav-item" data-module-id="prontuario" href="../prontuario-medico/index.html">
+<i class="fa-solid fa-notes-medical"></i>
+<span>Prontuário</span>
+</a>
+<a class="nav-item" data-module-id="controladoria" href="../controladoria/index.html">
+<i class="fa-solid fa-folder-tree"></i>
+<span>Controladoria</span>
+</a>
+<a class="nav-item" data-module-id="treinamentos" href="../treinamentos/index.html">
+<i class="fa-solid fa-graduation-cap"></i>
+<span>Treinamentos</span>
+</a>
+<a class="nav-item" data-module-id="almoxarifado" href="../almoxarifado/index.html">
+<i class="fa-solid fa-boxes-stacked"></i>
+<span>Almoxarifado</span>
+</a>
+<a class="nav-item" data-module-id="perfil" href="../perfil/index.html">
+<i class="fa-solid fa-user-gear"></i>
+<span>Meu perfil</span>
+</a>
+</nav>
+<div class="sidebar-status">
+<span class="status-dot"></span>
+<div>
+<strong>Dados sincronizados</strong>
+<small id="sidebarUpdate">29/07/2026</small>
+</div>
+</div>
+</aside>
+<div class="main-area">
+<header class="topbar">
+<button aria-expanded="true" aria-label="Ocultar menu lateral" class="menu-button" id="menuButton" title="Mostrar ou ocultar menu lateral" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+<div class="welcome">
+<strong>Bem-vindo(a), Dr. Gestor</strong>
+<span>Acompanhe a performance da unidade Cerquilho</span>
+</div>
+<label class="global-search">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="globalSearch" placeholder="Buscar profissional ou especialidade..." type="search"/>
+<kbd>⌘ K</kbd>
+</label>
+<div class="topbar-actions">
+<button aria-label="Alterar tema" class="icon-button" id="themeButton" type="button">
+<i class="fa-solid fa-palette"></i>
+</button>
+
+<button class="profile-button" id="profileButton" type="button">
+<span class="profile-avatar">DG</span>
+<span>
+<strong>Dr. Gestor</strong>
+<small>Administrador</small>
+</span>
+<i class="fa-solid fa-chevron-down"></i>
+</button>
+</div>
+</header>
+<main class="dashboard page-view" id="dashboardPage">
+<section class="dashboard-header">
+<div>
+<span class="eyebrow">Dashboard analítico</span>
+<h1 id="dashboardTitle">Visão geral da clínica</h1>
+<p id="dashboardSubtitle">Consolidação financeira e operacional de exames e consultas.</p>
+</div>
+<div class="header-actions">
+<div aria-label="Escolher aparência" class="theme-picker" id="themePicker">
+<button data-theme-choice="light-blue" title="Claro azul" type="button"></button>
+<button data-theme-choice="light-teal" title="Claro turquesa" type="button"></button>
+<button data-theme-choice="dark-cyan" title="Escuro azul" type="button"></button>
+<button data-theme-choice="dark-purple" title="Escuro roxo" type="button"></button>
+</div>
+<button class="outline-button" id="exportButton" type="button">
+<i class="fa-solid fa-download"></i>
+              Exportar CSV
+            </button>
+</div>
+</section>
+<section class="dashboard-data-hub" id="dashboardDataHub">
+  <div class="hub-toolbar">
+    <div class="hub-compact-title"><span class="hub-compact-icon"><i class="fa-solid fa-database"></i></span><div><span class="hub-kicker">Fonte de dados</span><h2>Planilha do dashboard</h2><p>Escolha a cidade e a planilha usada nos indicadores.</p></div></div>
+    <div class="hub-controls">
+      <label><span>Cidade</span><select id="dashboardCity"><option>Cerquilho</option><option>Tatuí</option><option>Embu das Artes</option><option>Itapeva</option></select></label>
+      <label><span>Planilha salva</span><select id="savedWorkbook"><option value="">Nenhuma planilha salva</option></select></label>
+      <label class="hub-upload" for="workbookUpload"><i class="fa-solid fa-file-arrow-up"></i><span>Adicionar planilhas</span></label><input id="workbookUpload" type="file" accept=".xlsx,.xls,.csv" multiple hidden>
+      <button class="hub-delete" id="deleteWorkbook" type="button" title="Excluir planilha selecionada"><i class="fa-solid fa-trash"></i></button>
+    </div>
+  </div>
+  <div class="hub-cards">
+    <article><span class="hub-icon red"><i class="fa-solid fa-triangle-exclamation"></i></span><div><small>Alertas</small><strong id="hubAlerts">0</strong><em>inconsistências encontradas</em></div></article>
+    <article><span class="hub-icon green"><i class="fa-solid fa-bullseye"></i></span><div><small>Meta</small><strong id="hubGoal">0%</strong><em id="hubGoalMeta">resultado da unidade</em></div></article>
+    <article><span class="hub-icon orange"><i class="fa-solid fa-clock"></i></span><div><small>Pendências</small><strong id="hubPending">0</strong><em>linhas com status pendente</em></div></article>
+    <article><span class="hub-icon blue"><i class="fa-solid fa-table"></i></span><div><small>Dados lidos</small><strong id="hubRows">0</strong><em id="hubSheets">0 abas analisadas</em></div></article>
+  </div>
+  <div class="hub-analysis" id="hubAnalysis" hidden>
+    <div class="hub-summary"><div><span class="hub-kicker">Leitura completa</span><h3 id="hubWorkbookName">Planilha</h3><p id="hubWorkbookSummary">Resumo automático.</p></div><label><span>Aba para visualizar</span><select id="hubSheetSelect"></select></label></div>
+    <div class="hub-insights" id="hubInsights"></div>
+    <div class="hub-preview"><table><thead id="hubPreviewHead"></thead><tbody id="hubPreviewBody"></tbody></table></div>
+  </div>
+  <div class="hub-empty" id="hubEmpty"><i class="fa-solid fa-file-excel"></i><strong>Selecione uma planilha Excel ou CSV</strong><span>O arquivo será salvo no navegador e poderá ser reaberto depois do F5.</span></div>
+</section>
+<section class="source-banner">
+<div class="source-icon"><i class="fa-solid fa-file-excel"></i></div>
+<div>
+<strong>Dados oficiais da planilha</strong>
+<span id="sourceName">Dash 2026 - Padronizado Cerquilho (1).xlsx</span>
+</div>
+<div class="source-meta">
+<span>Atualizado em</span>
+<strong id="updatedAt">29/07/2026</strong>
+</div>
+</section>
+<section aria-label="Separação dos indicadores" class="view-switch">
+<button class="active" data-view="geral" type="button">
+<i class="fa-solid fa-layer-group"></i>
+            Consolidado
+          </button>
+<button data-view="exames" type="button">
+<i class="fa-solid fa-microscope"></i>
+            Exames
+          </button>
+<button data-view="consultas" type="button">
+<i class="fa-solid fa-user-doctor"></i>
+            Consultas
+          </button>
+</section>
+<section class="filters-panel">
+<label>
+<span><i class="fa-regular fa-calendar"></i> Período</span>
+<select id="periodFilter">
+<option>Consolidado 2026</option>
+</select>
+</label>
+<label>
+<span><i class="fa-solid fa-user-doctor"></i> Profissional</span>
+<select id="professionalFilter">
+<option value="todos">Todos os profissionais</option>
+</select>
+</label>
+<label>
+<span><i class="fa-solid fa-stethoscope"></i> Especialidade</span>
+<select id="specialtyFilter">
+<option value="todas">Todas as especialidades</option>
+</select>
+</label>
+<button class="filter-reset" id="resetFilters" type="button">
+<i class="fa-solid fa-rotate-left"></i>
+            Limpar filtros
+          </button>
+</section>
+<section class="kpi-grid">
+<article class="kpi-card accent-cyan">
+<div class="kpi-icon"><i class="fa-solid fa-coins"></i></div>
+<div>
+<span>Faturamento</span>
+<strong id="kpiRevenue">R$ 0,00</strong>
+<small id="kpiRevenueHint">Exames + consultas</small>
+</div>
+<span class="kpi-tag positive"><i class="fa-solid fa-arrow-trend-up"></i> Receita</span>
+</article>
+<article class="kpi-card accent-blue">
+<div class="kpi-icon"><i class="fa-solid fa-wallet"></i></div>
+<div>
+<span>Pagamentos</span>
+<strong id="kpiPayment">R$ 0,00</strong>
+<small>Repasse e custos registrados</small>
+</div>
+<span class="kpi-tag neutral"><i class="fa-solid fa-receipt"></i> Saídas</span>
+</article>
+<article class="kpi-card accent-green">
+<div class="kpi-icon"><i class="fa-solid fa-chart-line"></i></div>
+<div>
+<span>Lucro final</span>
+<strong id="kpiProfit">R$ 0,00</strong>
+<small id="kpiMargin">Margem de 0%</small>
+</div>
+<span class="kpi-tag" id="profitTag"><i class="fa-solid fa-percent"></i> Resultado</span>
+</article>
+<article class="kpi-card accent-purple">
+<div class="kpi-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+<div>
+<span id="kpiQuantityLabel">Produções registradas</span>
+<strong id="kpiQuantity">0</strong>
+<small id="kpiQuantityHint">Exames e consultas</small>
+</div>
+<span class="kpi-tag neutral"><i class="fa-solid fa-database"></i> Volume</span>
+</article>
+</section>
+<section class="analytics-grid">
+<article class="panel panel-wide">
+<div class="panel-header">
+<div>
+<span class="panel-eyebrow" id="barEyebrow">Faturamento</span>
+<h2 id="barTitle">Maiores receitas por profissional</h2>
+</div>
+<select id="barMetric">
+<option value="faturamento">Faturamento</option>
+<option value="lucro">Lucro final</option>
+<option value="quantidade">Volume</option>
+</select>
+</div>
+<div class="chart-wrap">
+<div class="native-chart bar-chart" id="professionalChart"></div>
+</div>
+</article>
+<article class="panel">
+<div class="panel-header">
+<div>
+<span class="panel-eyebrow">Distribuição</span>
+<h2>Especialidades em destaque</h2>
+</div>
+</div>
+<div class="donut-layout">
+<div class="donut-wrap">
+<div aria-label="Distribuição por especialidade" class="native-donut" id="specialtyChart"></div>
+<div class="donut-center">
+<strong id="donutTotal">0</strong>
+<span>produções</span>
+</div>
+</div>
+<div class="legend-list" id="specialtyLegend"></div>
+</div>
+</article>
+<article class="panel">
+<div class="panel-header">
+<div>
+<span class="panel-eyebrow">Ranking</span>
+<h2>Profissionais por faturamento</h2>
+</div>
+<button class="mini-button" id="showAllButton" type="button">Ver todos</button>
+</div>
+<div class="ranking-list" id="rankingList"></div>
+</article>
+<article class="panel panel-medium">
+<div class="panel-header">
+<div>
+<span class="panel-eyebrow">Resultado operacional</span>
+<h2>Lucro por profissional</h2>
+</div>
+</div>
+<div class="chart-wrap chart-short">
+<div class="native-chart profit-chart" id="profitChart"></div>
+</div>
+</article>
+<article class="panel insight-panel">
+<div class="panel-header">
+<div>
+<span class="panel-eyebrow">Leitura executiva</span>
+<h2>Insights do período</h2>
+</div>
+</div>
+<div class="insight-list" id="insightList"></div>
+</article>
+</section>
+<section class="panel data-panel">
+<div class="panel-header">
+<div>
+<span class="panel-eyebrow">Detalhamento</span>
+<h2 id="tableTitle">Exames e consultas por profissional</h2>
+</div>
+<div class="table-summary">
+<span id="rowCount">0 registros</span>
+</div>
+</div>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Profissional</th>
+<th>Especialidade</th>
+<th>Faturamento</th>
+<th>Pagamento</th>
+<th>Lucro</th>
+<th>Quantidade</th>
+<th>Margem</th>
+</tr>
+</thead>
+<tbody id="dataTableBody"></tbody>
+</table>
+</div>
+</section>
+<footer class="dashboard-footer">
+<span><i class="fa-solid fa-shield-halved"></i> Informações internas e protegidas.</span>
+<span>LAG Controller © 2026</span>
+</footer>
+</main>
+</div>
+</div>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<script src="../shared/js/sidebar-config.js?v=20260731-fixed-sections"></script><script src="../shared/js/lag-settings.js?v=20260805-city"></script><script src="js/dados-planilha.js?v=20260731"></script><script src="js/drive-manifest.js?v=20260803"></script><script src="js/drive-bootstrap.js?v=20260803"></script><script src="js/controle.js?v=20260803-drive"></script><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><script src="js/dashboard-extra.js?v=20260803-drive"></script><script src="../shared/js/lag-experience.js?v=20260804-contexto"></script><script src="../shared/js/lag-notifications.js?v=20260804"></script><script src="../shared/js/lag-api-config.js?v=20260804"></script><script src="../shared/js/lag-support.js?v=20260807-livechat"></script><script src="../shared/js/lag-global-city.js?v=20260805"></script>
+<script src="../shared/js/lag-topbar-home-standard.js?v=20260805-final"></script><script src="../shared/js/lag-topbar-clean.js?v=20260805"></script>
+</body>
+</html>
