@@ -1,0 +1,16 @@
+{
+  "name": "lag-controller-cloudflare",
+  "private": true,
+  "version": "1.1.0",
+  "description": "LAG Controller - Cloudflare Pages, Functions, D1 e R2",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public --project-name lag-controller",
+    "db:migrate:local": "wrangler d1 migrations apply lag-controller-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply lag-controller-db --remote",
+    "functions:build": "wrangler pages functions build"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
