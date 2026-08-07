@@ -1,0 +1,155 @@
+.lag-permission-hidden { display: none !important; }
+
+.lag-access-denied-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: var(--text, #0a2447);
+  background: color-mix(in srgb, var(--bg, #f4f8fc) 92%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.lag-access-denied-overlay section {
+  width: min(560px, 100%);
+  padding: 38px;
+  text-align: center;
+  border: 1px solid var(--line, #dce7f3);
+  border-radius: 26px;
+  background: var(--surface, #fff);
+  box-shadow: var(--shadow, 0 24px 70px rgba(17, 53, 94, .16));
+}
+
+.lag-denied-icon {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  color: var(--negative, #e44c64);
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--negative, #e44c64) 13%, transparent);
+  font-size: 28px;
+}
+
+.lag-denied-kicker {
+  color: var(--negative, #e44c64);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.lag-access-denied-overlay h1 {
+  margin: 10px 0 12px;
+  font-size: clamp(26px, 5vw, 38px);
+  letter-spacing: -.045em;
+}
+
+.lag-access-denied-overlay p {
+  margin: 0 auto 24px;
+  max-width: 440px;
+  color: var(--muted, #6a7b94);
+  line-height: 1.65;
+}
+
+.lag-access-denied-overlay section > div {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lag-access-denied-overlay a {
+  min-height: 44px;
+  padding: 0 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary, #1478ff), var(--primary-2, #22b8cf));
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.lag-access-denied-overlay a.secondary {
+  color: var(--text, #0a2447);
+  border-color: var(--line, #dce7f3);
+  background: var(--surface-2, #f8fbff);
+}
+
+.lag-custom-topic { animation: lagTopicIn 180ms ease both; }
+@keyframes lagTopicIn { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
+
+
+.lag-sidebar-section-label {
+  padding: 4px 12px 2px;
+  display: block;
+  overflow: hidden;
+  color: var(--muted, #6a7b94);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.sidebar-hidden .lag-sidebar-section-label,
+.sidebar.collapsed .lag-sidebar-section-label { display: none; }
+
+.lag-sidebar-section-label{display:block;padding:10px 14px 5px;color:var(--muted,#91a7c2);font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}
+
+/* ===== Correção de visibilidade dos títulos da sidebar =====
+   Impede que Principal, Gestão, Administração e Conta sejam comprimidos
+   quando existem muitos tópicos no menu. */
+.sidebar-nav {
+  align-content: flex-start;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.sidebar-nav > .nav-item,
+.sidebar-nav > .lag-custom-topic,
+.sidebar-nav > .nav-divider,
+.sidebar-nav > .lag-layout-divider,
+.sidebar-nav > .lag-sidebar-section-label {
+  flex: 0 0 auto;
+}
+
+.sidebar-nav > .lag-sidebar-section-label {
+  box-sizing: border-box;
+  width: calc(100% - 8px);
+  min-height: 30px;
+  margin: 10px 4px 2px;
+  padding: 8px 10px 6px;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  color: color-mix(in srgb, var(--primary, #1478ff) 68%, var(--muted, #6a7b94));
+  border-bottom: 1px solid color-mix(in srgb, var(--primary, #1478ff) 18%, var(--line, #dce7f3));
+  background: linear-gradient(90deg, color-mix(in srgb, var(--primary, #1478ff) 7%, transparent), transparent 82%);
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sidebar-nav > .lag-sidebar-section-label:first-child {
+  margin-top: 0;
+}
+
+.sidebar.open .lag-sidebar-section-label,
+body:not(.sidebar-hidden) .sidebar .lag-sidebar-section-label {
+  display: flex !important;
+}
+
+body.sidebar-hidden .sidebar:not(.open) .lag-sidebar-section-label,
+.sidebar.collapsed .lag-sidebar-section-label {
+  display: none !important;
+}

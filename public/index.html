@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | LAG Controller</title>
+  <link rel="stylesheet" href="./css/lag-global.css?v=lag-controller-20260610" />
+  <link rel="stylesheet" href="./css/lag-svg-global.css?v=lag-svg-20260610-topo1" />
+  <link rel="stylesheet" href="./css/login-lag.css?v=login-lag-20260610-topo1" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body class="lag-login-page" data-page="login">
+  <div class="lag-login-orb orb-a" aria-hidden="true"></div>
+  <div class="lag-login-orb orb-b" aria-hidden="true"></div>
+  <div class="lag-login-orb orb-c" aria-hidden="true"></div>
+
+  <header class="lag-login-header">
+    <a class="lag-login-brand" href="./index.html" aria-label="LAG Controller">
+      <img src="./assets/images/logo-lag-sem-fundo.png" alt="LAG Controller" />
+    </a>
+
+    <div class="lag-header-center" aria-hidden="true">
+      <span></span>
+      <b>Controladoria inteligente</b>
+    </div>
+
+    <nav class="lag-login-nav" aria-label="Navegação do login">
+      <a href="./index.html" class="active"><i class="fa-solid fa-house"></i> Início</a>
+      <a href="#beneficios"><i class="fa-solid fa-shield-heart"></i> Benefícios</a>
+      <a href="#contato"><i class="fa-solid fa-headset"></i> Contato</a>
+    </nav>
+  </header>
+
+  <main class="lag-login-shell">
+    <section class="lag-login-hero" aria-labelledby="login-title">
+      <div class="lag-kicker">
+        <span></span>
+        Seu acesso
+      </div>
+
+      <h1 id="login-title">
+        Central LAG<br />
+        <strong>Controller</strong>
+      </h1>
+
+      <p>
+        Acesse sua plataforma com segurança para acompanhar rotinas, documentos,
+        treinamentos, medicina, exames e controladoria em um ambiente organizado.
+      </p>
+
+      <div class="lag-hero-panel" id="beneficios">
+        <div class="lag-hero-visual" aria-hidden="true">
+          <svg viewBox="0 0 540 420" role="img" aria-label="Painel visual LAG Controller">
+            <defs>
+              <linearGradient id="lagBlue" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#20b7ff"/>
+                <stop offset="45%" stop-color="#0766c9"/>
+                <stop offset="100%" stop-color="#042b69"/>
+              </linearGradient>
+              <linearGradient id="lagCyan" x1="0" x2="1">
+                <stop offset="0%" stop-color="#8cecff"/>
+                <stop offset="100%" stop-color="#2f7bff"/>
+              </linearGradient>
+              <filter id="lagGlow">
+                <feGaussianBlur stdDeviation="8" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <path class="lag-svg-float" d="M86 104c32-58 118-71 184-57 91 19 164 90 176 178 11 81-25 146-86 174-73 34-186 15-248-42-70-64-65-184-26-253z" fill="url(#lagBlue)" opacity=".08"/>
+            <rect x="78" y="82" width="382" height="246" rx="34" fill="#fff" opacity=".92"/>
+            <rect x="108" y="112" width="322" height="24" rx="12" fill="#e8f4ff"/>
+            <circle cx="123" cy="124" r="5" fill="#ec4c47"/>
+            <circle cx="140" cy="124" r="5" fill="#ffb92d"/>
+            <circle cx="157" cy="124" r="5" fill="#25c382"/>
+
+            <rect x="112" y="160" width="132" height="128" rx="24" fill="#f2f8ff"/>
+            <rect x="266" y="160" width="134" height="28" rx="14" fill="#eaf4ff"/>
+            <rect x="266" y="204" width="116" height="18" rx="9" fill="#d6ebff"/>
+            <rect x="266" y="236" width="138" height="18" rx="9" fill="#d6ebff"/>
+            <rect x="266" y="268" width="94" height="18" rx="9" fill="#d6ebff"/>
+
+            <path d="M136 260V190c0-8 7-15 15-15h52c8 0 15 7 15 15v70c0 8-7 15-15 15h-52c-8 0-15-7-15-15z" fill="url(#lagBlue)" opacity=".96"/>
+            <path d="M158 248v-46h18c18 0 30 9 30 23s-12 23-30 23h-18zm18-16c8 0 13-2 13-7s-5-7-13-7h-1v14h1z" fill="#fff"/>
+            <path d="M178 207h27v16h-27zM151 207h16v41h-16z" fill="#fff" opacity=".88"/>
+
+            <path class="lag-svg-line" d="M80 350c68-56 127-39 188-8s127 45 196-23" fill="none" stroke="url(#lagCyan)" stroke-width="5" stroke-linecap="round" filter="url(#lagGlow)"/>
+            <circle class="lag-svg-pulse" cx="345" cy="302" r="12" fill="#27c4ff"/>
+            <circle class="lag-svg-pulse slow" cx="405" cy="312" r="8" fill="#0a62d0"/>
+          </svg>
+        </div>
+
+        <div class="lag-feature-grid">
+          <article>
+            <i class="fa-solid fa-layer-group"></i>
+            <strong>Rotina centralizada</strong>
+            <span>Menus e módulos mais claros.</span>
+          </article>
+
+          <article>
+            <i class="fa-solid fa-lock"></i>
+            <strong>Acesso seguro</strong>
+            <span>Visual novo sem mexer no banco.</span>
+          </article>
+
+          <article>
+            <i class="fa-solid fa-chart-line"></i>
+            <strong>Controle inteligente</strong>
+            <span>Interface com aparência LAG.</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="lag-login-card" aria-label="Formulário de login">
+      <div class="lag-card-glow" aria-hidden="true"></div>
+
+      <div class="lag-login-card-head">
+        <span class="lag-login-badge">
+          <i class="fa-solid fa-fingerprint"></i>
+          Área restrita
+        </span>
+
+        <h2>Entrar</h2>
+        <p>Faça login para continuar no painel.</p>
+      </div>
+
+      <form id="loginForm" class="lag-login-form" autocomplete="on">
+        <label class="lag-field">
+          <span>E-mail</span>
+
+          <div class="lag-field-control">
+            <i class="fa-regular fa-envelope"></i>
+            <input id="email" name="email" type="email" placeholder="seuemail@empresa.com" autocomplete="email" required />
+          </div>
+        </label>
+
+        <label class="lag-field">
+          <span>Senha</span>
+
+          <div class="lag-field-control">
+            <i class="fa-solid fa-key"></i>
+            <input id="password" name="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password" required />
+
+            <button class="lag-password-toggle" type="button" id="togglePassword" aria-label="Mostrar senha">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </label>
+
+        <div class="lag-login-row">
+          <label class="lag-remember">
+            <input id="rememberLogin" name="remember" type="checkbox" />
+            <span>Lembrar acesso</span>
+          </label>
+
+          <a class="lag-forgot" id="forgotPassword" href="#">Esqueci minha senha</a>
+        </div>
+
+        <div id="authMessage" class="lag-login-message login-message" role="status" aria-live="polite"></div>
+
+        <button type="submit" class="lag-login-submit" id="loginButton">
+          <span>Entrar</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <button type="button" id="googleLoginBtn" hidden style="display:none"></button>
+      </form>
+
+      <div class="lag-login-footer" id="contato">
+        <span></span>
+        <p>Ambiente LAG Controller</p>
+        <span></span>
+      </div>
+    </section>
+  </main>
+  <script src="./shared/js/lag-login.js?v=20260806-ref-layout"></script>
+  <script src="./js/login-lag.js?v=login-lag-ui-topo1"></script>
+  <script src="./js/lag-svg-global.js?v=lag-svg-topo1"></script>
+</body>
+</html>
