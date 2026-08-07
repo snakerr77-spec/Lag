@@ -25,7 +25,6 @@ export function publicUser(row) {
   return {
     id: row.id,
     name: row.name,
-    email: row.email,
     role: normalizeRole(row.role),
     unit: row.city,
     city: row.city,
