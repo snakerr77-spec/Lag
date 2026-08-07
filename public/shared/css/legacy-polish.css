@@ -1,8 +1,0 @@
-
-:root{--lag-navy:#061426;--lag-surface:#0a1d34;--lag-cyan:#15c7ff;--lag-text:#f4f8ff;--lag-muted:#91a7c2;--lag-line:#1a3858}
-html{font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--lag-navy)}
-body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#061426,#081a31 55%,#0c2845);color:var(--lag-text)}
-header,.topbar,.app-header{backdrop-filter:blur(18px)}
-button,a,input,select,textarea{font-family:inherit}
-.logo img,.brand img,.sidebar-logo img{object-fit:contain}
-[data-theme^="light"] body{background:#f4f8fc;color:#0a2447}
