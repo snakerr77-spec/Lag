@@ -1,0 +1,26 @@
+export function getDb(env) {
+  const db = env?.DB || env?.["lag-controller-db"];
+  if (!db || typeof db.prepare !== "function") {
+    const error = new Error("Cloudflare D1 binding DB não está disponível.");
+    error.code = "DB_BINDING_MISSING";
+    throw error;
+  }
+  return db;
+}
+
+export function getCandidateFiles(env) {
+  return env?.CANDIDATE_FILES || env?.["lag-candidate-files"] || null;
+}
+
+export function getPartnerFiles(env) {
+  return env?.PARTNER_FILES || env?.["lag-partner-files"] || null;
+}
+
+export function safeErrorCode(error, fallback = "INTERNAL_ERROR") {
+  const code = String(error?.code || "").trim();
+  if (/^[A-Z0-9_:-]{2,80}$/.test(code)) return code;
+  const message = String(error?.message || "");
+  if (message.includes("no such table")) return "DB_SCHEMA_MISSING";
+  if (message.includes("D1_ERROR")) return "D1_ERROR";
+  return fallback;
+}
