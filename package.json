@@ -1,16 +1,25 @@
 {
-  "name": "lag-controller-cloudflare",
-  "private": true,
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "wrangler pages dev",
-    "deploy": "wrangler pages deploy public --project-name lag-controller",
-    "project:create": "wrangler pages project create lag-controller --production-branch main",
-    "db:migrate:local": "wrangler d1 migrations apply lag-controller-db --local",
-    "db:migrate:remote": "wrangler d1 migrations apply lag-controller-db --remote",
-    "functions:build": "wrangler pages functions build"
-  },
-  "devDependencies": {
-    "wrangler": "^4.0.0"
-  }
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "lag-controller",
+  "compatibility_date": "2026-08-07",
+  "pages_build_output_dir": "./public",
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "lag-controller-db",
+      "database_id": "6bb01193-c1f7-45af-80b2-0e31f826af52"
+    }
+  ],
+
+  "r2_buckets": [
+    {
+      "binding": "CANDIDATE_FILES",
+      "bucket_name": "lag-candidate-files"
+    },
+    {
+      "binding": "PARTNER_FILES",
+      "bucket_name": "lag-partner-files"
+    }
+  ]
 }
