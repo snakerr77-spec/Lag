@@ -1,22 +1,33 @@
-import { getDb, getCandidateFiles, getPartnerFiles, safeErrorCode } from "../_lib/runtime.js";
-import { ensureCoreSchema } from "../_lib/schema.js";
-
 export async function onRequestGet(context) {
+  const result = {
+    ok: true,
+    d1: false,
+    candidateFiles: false,
+    partnerFiles: false,
+    timestamp: new Date().toISOString()
+  };
+
   try {
-    await ensureCoreSchema(context.env);
-    const db = getDb(context.env);
-    const probe = await db.prepare("SELECT 1 AS ok").first();
-    return Response.json({
-      ok: Number(probe?.ok || 0) === 1,
-      d1: true,
-      candidateFiles: Boolean(getCandidateFiles(context.env)),
-      partnerFiles: Boolean(getPartnerFiles(context.env))
-    }, { headers: { "Cache-Control": "no-store" } });
+    if (context.env.DB) {
+      await context.env.DB.prepare("SELECT 1 AS ok").first();
+      result.d1 = true;
+    }
   } catch (error) {
-    console.error("health_error", error?.stack || error);
-    return Response.json({
-      ok: false,
-      code: safeErrorCode(error)
-    }, { status: 500, headers: { "Cache-Control": "no-store" } });
+    result.d1Error = String(error?.message || error);
   }
+
+  result.candidateFiles = Boolean(context.env.CANDIDATE_FILES);
+  result.partnerFiles = Boolean(context.env.PARTNER_FILES);
+
+  result.ok =
+    result.d1 &&
+    result.candidateFiles &&
+    result.partnerFiles;
+
+  return Response.json(result, {
+    status: result.ok ? 200 : 500,
+    headers: {
+      "Cache-Control": "no-store"
+    }
+  });
 }
